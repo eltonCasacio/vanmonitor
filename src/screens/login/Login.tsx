@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { Button } from '@components/Button/Button'
-import { Input } from '@components/Input/Input'
+import { ButtonWithIcon } from '@components/ButtonWithIcon/ButtonWithIcon'
 import * as S from './styles'
 
 const Login: React.FC = () => {
@@ -15,6 +15,7 @@ const Login: React.FC = () => {
         <S.ContentBody>
           <S.Description>digite o CPF</S.Description>
           <Button title='Dog'/>
+          <ButtonWithIcon title='Facebook' iconName="facebook"/>
         </S.ContentBody>
         <S.ContentFooter></S.ContentFooter>
       </S.Container>

@@ -1,27 +1,29 @@
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from "react-native-responsive-fontsize";
 import { StyleSheet } from "react-native";
 import theme from "@styles/theme";
+import Fontisto from 'react-native-vector-icons/Fontisto'
 
 export const Button = styled(RectButton)`
-    width: ${RFValue(120)}px;
-    height:  ${RFValue(60)}px;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    width: ${RFValue(120)}px;
+    height:  ${RFValue(60)}px;
     border-radius: ${RFValue(5)}px;
-    background-color: ${({ theme }) => theme.COLORS.GRAY6};
+    background-color: ${({ theme }) => theme.COLORS.BLUE};
 `
 
-export const ImgButton = styled.Image`
-  width: ${RFValue(30)}px;
-  height:  ${RFValue(30)}px;
+export const IconFacebook = styled(Fontisto)`
+ font-size:  ${RFValue(25)}px;
+ color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
 export const Title = styled.Text`
   font-size:  ${RFValue(15)}px;
   font-family: ${theme.FONTS.PoppinsLight};
+  color: ${({ theme }) => theme.COLORS.WHITE};
   margin-left: ${RFValue(5)}px;
 `
 
