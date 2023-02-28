@@ -13,11 +13,13 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.GRAY6};
 `
 
-export const InputContainer = styled.TextInput`
+export const InputContainer = styled(TextInputMask)`
   flex: 1;
-  text-align: center;
+  height: 100%;
+  margin-top: 8px;
+  padding-left: 15px;
   font-family: ${({ theme }) => theme.FONTS.PoppinsLight};
-  font-size: ${RFValue(18)}px;
+  font-size: ${RFValue(20)}px;
   border-radius: ${RFValue(8)}px;
-  height: 60px;
+  color: ${({ theme }) => theme.COLORS.GRAY2};;
 `

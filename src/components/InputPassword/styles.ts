@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
-import { TextInputMask } from "react-native-masked-text";
 
 export const Container = styled.View`
   flex-direction: row;
@@ -15,9 +14,9 @@ export const Container = styled.View`
 
 export const InputContainer = styled.TextInput`
   flex: 1;
-  text-align: center;
+  height: 100%;
+  padding-top: 15px;
   font-family: ${({ theme }) => theme.FONTS.PoppinsLight};
   font-size: ${RFValue(18)}px;
   border-radius: ${RFValue(8)}px;
-  height: 60px;
 `

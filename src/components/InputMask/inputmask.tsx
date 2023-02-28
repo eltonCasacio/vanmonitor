@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import * as S from './styles'
 import Icons from 'react-native-vector-icons/Ionicons'
-import { TextInputProps, TouchableOpacity } from 'react-native'
+import { TextInputProps } from 'react-native'
+import { TextInputMaskTypeProp } from 'react-native-masked-text'
+import { useTheme } from 'styled-components'
 
 interface InputProps {
   rightIcon?: boolean
@@ -10,49 +12,47 @@ interface InputProps {
   iconNameRight?: string
   iconSize?: number
   iconColor?: string
+  inputType: TextInputMaskTypeProp
   inputValue: string
-  toggleHandle?: boolean
   onChangeText: ((text: string, rawText?: string | undefined) => void) | undefined
 }
-const Input: React.FC<InputProps & TextInputProps> = ({
+const InputMask: React.FC<InputProps & TextInputProps> = ({
   leftIcon,
   rightIcon,
   iconNameLeft,
   iconNameRight,
   iconSize,
   iconColor,
+  inputType,
   inputValue,
-  toggleHandle,
   onChangeText,
   ...rest
 }) => {
-  const [toggle, setToggle] = useState(toggleHandle)
-
+  const {COLORS} = useTheme()
   return (
     <S.Container>
       {leftIcon && (
         <Icons
           name={iconNameLeft!}
           size={iconSize}
-          color={iconColor}
+          color={iconColor || COLORS.GRAY3}
         />
       )}
       <S.InputContainer
         {...rest}
+        type={inputType}
         value={inputValue}
         onChangeText={onChangeText}
       />
       {rightIcon && (
-        <TouchableOpacity onPress={() => setToggle(!toggle)}>
-          <Icons
-            name={iconNameRight!}
-            size={iconSize}
-            color={iconColor}
-          />
-        </TouchableOpacity>
+        <Icons
+          name={iconNameRight!}
+          size={iconSize}
+          color={iconColor || COLORS.GRAY3}
+        />
       )}
     </S.Container>
   )
 }
 
-export default Input
+export default InputMask

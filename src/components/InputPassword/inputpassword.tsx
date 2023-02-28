@@ -2,57 +2,54 @@ import React, { useState } from 'react'
 import * as S from './styles'
 import Icons from 'react-native-vector-icons/Ionicons'
 import { TextInputProps, TouchableOpacity } from 'react-native'
+import { useTheme } from 'styled-components'
 
 interface InputProps {
-  rightIcon?: boolean
   leftIcon?: boolean
-  iconNameLeft?: string
-  iconNameRight?: string
+  iconName?: string //lock-closed-outline
   iconSize?: number
   iconColor?: string
   inputValue: string
-  toggleHandle?: boolean
   onChangeText: ((text: string, rawText?: string | undefined) => void) | undefined
 }
-const Input: React.FC<InputProps & TextInputProps> = ({
+const InputPassword: React.FC<InputProps & TextInputProps> = ({
   leftIcon,
-  rightIcon,
-  iconNameLeft,
-  iconNameRight,
+  iconName,
   iconSize,
   iconColor,
   inputValue,
-  toggleHandle,
   onChangeText,
   ...rest
 }) => {
-  const [toggle, setToggle] = useState(toggleHandle)
+  const [isPasswordVisible, changePasswordVisible] = useState(false)
+  const {COLORS} = useTheme()
 
   return (
     <S.Container>
       {leftIcon && (
         <Icons
-          name={iconNameLeft!}
+          name={iconName!}
           size={iconSize}
-          color={iconColor}
+          color={iconColor || COLORS.GRAY2}
         />
       )}
       <S.InputContainer
         {...rest}
         value={inputValue}
         onChangeText={onChangeText}
+        secureTextEntry={!isPasswordVisible}
       />
-      {rightIcon && (
-        <TouchableOpacity onPress={() => setToggle(!toggle)}>
-          <Icons
-            name={iconNameRight!}
-            size={iconSize}
-            color={iconColor}
-          />
-        </TouchableOpacity>
-      )}
+
+      <TouchableOpacity onPress={() => changePasswordVisible(!isPasswordVisible)}>
+        <Icons
+          name={isPasswordVisible ? 'eye' : 'eye-off'}
+          size={iconSize}
+          color={iconColor || COLORS.GRAY3}
+        />
+      </TouchableOpacity>
+
     </S.Container>
   )
 }
 
-export default Input
+export default InputPassword

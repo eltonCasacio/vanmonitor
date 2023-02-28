@@ -4,26 +4,29 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { StyleSheet } from "react-native";
 import theme from "@styles/theme";
 
-export const Button = styled(RectButton)`
-    width: ${RFValue(120)}px;
-    height:  ${RFValue(60)}px;
+export const Container = styled.TouchableOpacity`
+    width: 100%;
+    height:  ${RFValue(50)}px;
     align-items: center;
     justify-content: center;
     flex-direction: row;
     border-radius: ${RFValue(5)}px;
-    background-color: ${({ theme }) => theme.COLORS.GRAY6};
-`
-
-export const ImgButton = styled.Image`
-  width: ${RFValue(30)}px;
-  height:  ${RFValue(30)}px;
 `
 
 export const Title = styled.Text`
   font-size:  ${RFValue(15)}px;
-  font-family: ${theme.FONTS.PoppinsLight};
-  margin-left: ${RFValue(5)}px;
+  color: ${({ theme }) => theme.COLORS.WHITE_100};
+  font-family: ${theme.FONTS.PoppinsSemiBold};
+  text-transform: uppercase;
 `
+
+export const Content = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+
+
 
 export const BoxShadow = styled.View``
 export const Shadow = StyleSheet.create({
