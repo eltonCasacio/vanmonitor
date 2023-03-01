@@ -3,10 +3,8 @@ import { SafeAreaView } from 'react-native'
 import * as S from './styles'
 import InputMask from '@components/InputMask'
 import { Button } from '@components/Button'
-import { useTheme } from 'styled-components'
 
 const Login: React.FC = () => {
-  const { COLORS } = useTheme()
   const [value, setValue] = useState("")
 
   return (
@@ -28,7 +26,10 @@ const Login: React.FC = () => {
             autoCapitalize='none'
             autoCorrect={false}
           />
-          <S.CreateAccount>criar conta</S.CreateAccount>
+          <S.CreateAccountWrapper onPress={() => {}}>
+            <S.CreateAccountText>Não tem cadastro ainda?</S.CreateAccountText>
+            <S.CreateAccountTextBold>Cadastre-se</S.CreateAccountTextBold>
+          </S.CreateAccountWrapper>
         </S.ContentBody>
         <S.ContentFooter>
           <Button

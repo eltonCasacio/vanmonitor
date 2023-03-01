@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { Pressable } from 'react-native'
 
 export const Container = styled.View`
   height: 100%;
@@ -35,11 +36,27 @@ export const Description = styled.Text`
     font-family: ${theme.FONTS.PoppinsMediumItalic};
   `}
 `
-export const CreateAccount = styled.Text`
+
+export const CreateAccountWrapper = styled(Pressable)`
+  align-items: center;
+  flex-direction: row;
+  justify-content:  center;
+  margin: ${RFValue(5)}px 0;
+`
+
+export const CreateAccountText = styled.Text`
  ${({ theme }) => css`
-    width: 100%;
+    font-size: ${RFValue(14)}px;
+    color: ${theme.COLORS.GRAY3};
     font-family: ${theme.FONTS.PoppinsMediumItalic};
-    color: ${theme.COLORS.GREEN};
-    text-align: center;
+  `}
+`
+
+export const CreateAccountTextBold = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${RFValue(14)}px;
+    color: ${theme.COLORS.GRAY2};
+    font-family: ${theme.FONTS.PoppinsSemiBoldItalic};
+    margin-left: ${RFValue(5)}px;
   `}
 `

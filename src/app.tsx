@@ -3,7 +3,7 @@ import { View, StatusBar } from 'react-native';
 import theme from '@styles/theme'
 import { ThemeProvider } from 'styled-components/native'
 
-import {Login} from '@screens/login/Login'
+import {Signup} from '@screens/Signup/Signup'
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -12,7 +12,7 @@ const App: React.FC = () => {
         backgroundColor={"transparent"}
       />
       <View>
-        <Login />
+        <Signup />
       </View>
     </ThemeProvider>
   )

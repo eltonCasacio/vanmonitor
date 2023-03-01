@@ -19,7 +19,7 @@ export const InputContainer = styled(TextInputMask)`
   margin-top: 8px;
   padding-left: 15px;
   font-family: ${({ theme }) => theme.FONTS.PoppinsLight};
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFValue(16)}px;
   border-radius: ${RFValue(8)}px;
-  color: ${({ theme }) => theme.COLORS.GRAY2};;
+  color: ${({ theme }) => theme.COLORS.GRAY2};
 `

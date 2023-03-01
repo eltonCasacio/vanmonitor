@@ -1,6 +1,5 @@
 import React from 'react'
-import { RectButtonProps } from 'react-native-gesture-handler'
-import { ActivityIndicator, PressableProps, Touchable, TouchableOpacityProps } from 'react-native'
+import { ActivityIndicator, TouchableOpacityProps } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'
 import * as S from './styles'
 
