@@ -6,7 +6,7 @@ export const Container = styled.View`
   flex-direction: row;
   width: 100%;
   height: 60px;
-  padding: 0 ${RFValue(10)}px;
+  padding: 0 ${RFValue(8)}px;
   border-radius: ${RFValue(8)}px;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +17,6 @@ export const InputContainer = styled(TextInputMask)`
   flex: 1;
   height: 100%;
   margin-top: 8px;
-  padding-left: 15px;
   font-family: ${({ theme }) => theme.FONTS.PoppinsLight};
   font-size: ${RFValue(16)}px;
   border-radius: ${RFValue(8)}px;

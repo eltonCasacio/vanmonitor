@@ -2,8 +2,7 @@ import React from 'react';
 import { View, StatusBar } from 'react-native';
 import theme from '@styles/theme'
 import { ThemeProvider } from 'styled-components/native'
-
-import {Signup} from '@screens/Signup/Signup'
+import { RegisterAddressUser } from '@screens/Signup'
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -12,7 +11,7 @@ const App: React.FC = () => {
         backgroundColor={"transparent"}
       />
       <View>
-        <Signup />
+        <RegisterAddressUser />
       </View>
     </ThemeProvider>
   )

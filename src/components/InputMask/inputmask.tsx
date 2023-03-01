@@ -14,6 +14,7 @@ interface InputProps {
   iconColor?: string
   inputType: TextInputMaskTypeProp
   inputValue: string
+  mask?: string
   onChangeText: ((text: string, rawText?: string | undefined) => void) | undefined
 }
 const InputMask: React.FC<InputProps & TextInputProps> = ({
@@ -25,10 +26,11 @@ const InputMask: React.FC<InputProps & TextInputProps> = ({
   iconColor,
   inputType,
   inputValue,
+  mask,
   onChangeText,
   ...rest
 }) => {
-  const {COLORS} = useTheme()
+  const { COLORS } = useTheme()
   return (
     <S.Container>
       {leftIcon && (
@@ -38,12 +40,25 @@ const InputMask: React.FC<InputProps & TextInputProps> = ({
           color={iconColor || COLORS.GRAY3}
         />
       )}
-      <S.InputContainer
-        {...rest}
-        type={inputType}
-        value={inputValue}
-        onChangeText={onChangeText}
-      />
+      {inputType == 'custom' ? (
+        <S.InputContainer
+          {...rest}
+          type={inputType}
+          value={inputValue}
+          onChangeText={onChangeText}
+          options={{
+            mask: mask
+          }}
+        />
+      ) : (
+        <S.InputContainer
+          {...rest}
+          type={inputType}
+          value={inputValue}
+          onChangeText={onChangeText}
+        />
+      )}
+
       {rightIcon && (
         <Icons
           name={iconNameRight!}

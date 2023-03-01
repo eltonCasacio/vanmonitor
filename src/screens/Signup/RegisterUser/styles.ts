@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Pressable } from 'react-native'
 
 export const Container = styled.View`
   height: 100%;
@@ -23,10 +22,10 @@ export const InputWrapper = styled.View`
   margin: ${RFValue(10)}px 0;
 `
 
-export const Title = styled.Text`
-  ${({ theme }) => css`
+export const Description = styled.Text`
+ ${({ theme }) => css`
     color: ${theme.COLORS.GREEN};
     font-size: ${RFValue(18)}px;
-    font-family: ${theme.FONTS.PoppinsMediumItalic};
+    font-family: ${theme.FONTS.PoppinsItalic};
   `}
 `

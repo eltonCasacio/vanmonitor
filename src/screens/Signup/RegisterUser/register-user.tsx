@@ -4,13 +4,13 @@ import Input from '@components/Input'
 import InputMask from '@components/InputMask'
 import { Button } from '@components/Button'
 
-const Signup: React.FC = () => {
+const RegisterUser: React.FC = () => {
   const [value, setValue] = useState("")
 
   return (
     <S.Container>
       <S.ContentHeader>
-        <S.Title>Cadastro</S.Title>
+      <S.Description>Cadastro do Usuário</S.Description>
       </S.ContentHeader>
       <S.ContentBody>
         <S.InputWrapper>
@@ -62,4 +62,4 @@ const Signup: React.FC = () => {
   )
 }
 
-export { Signup }
+export { RegisterUser }
