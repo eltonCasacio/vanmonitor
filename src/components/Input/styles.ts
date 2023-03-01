@@ -9,7 +9,7 @@ export const Container = styled.View`
   border-radius: ${RFValue(8)}px;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.COLORS.GRAY6};
+  background-color: ${({ theme }) => theme.COLORS.GRAY5};
 `
 
 export const InputContainer = styled.TextInput`
@@ -19,5 +19,6 @@ export const InputContainer = styled.TextInput`
   font-family: ${({ theme }) => theme.FONTS.PoppinsLight};
   font-size: ${RFValue(14)}px;
   border-radius: ${RFValue(8)}px;
+  text-align: center;
   color: ${({ theme }) => theme.COLORS.GRAY2};
 `

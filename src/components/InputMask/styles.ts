@@ -7,10 +7,9 @@ export const Container = styled.View`
   width: 100%;
   height: 60px;
   padding: 0 ${RFValue(8)}px;
-  border-radius: ${RFValue(8)}px;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.COLORS.GRAY6};
+  background-color: ${({ theme }) => theme.COLORS.GRAY5};
 `
 
 export const InputContainer = styled(TextInputMask)`
@@ -19,6 +18,7 @@ export const InputContainer = styled(TextInputMask)`
   margin-top: 8px;
   font-family: ${({ theme }) => theme.FONTS.PoppinsLight};
   font-size: ${RFValue(16)}px;
+  text-align: center;
   border-radius: ${RFValue(8)}px;
   color: ${({ theme }) => theme.COLORS.GRAY2};
 `

@@ -1,11 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from './styles'
 import Input from '@components/Input'
 import InputMask from '@components/InputMask'
 import { Button } from '@components/Button'
+import { useRoute } from '@react-navigation/native'
+import { Alert } from 'react-native'
+import { RouteProp } from '@react-navigation/native'
+
+type Params = {
+  nomeResponsavel: any,
+  cpf:  any,
+  telefone: any
+}
+type CustomRoute = RouteProp<Params, any>
 
 const RegisterAddressUser: React.FC = () => {
+  const {params} = useRoute<CustomRoute>()
   const [value, setValue] = useState("")
+
+  useEffect(() => {
+    Alert.alert(params?.cpf)
+  }, [])
 
   return (
     <S.Container>

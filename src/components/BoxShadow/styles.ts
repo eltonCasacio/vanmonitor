@@ -1,6 +1,5 @@
 import styled from "styled-components/native"
 import { StyleSheet } from "react-native";
-import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled.View``
 export const Shadow = StyleSheet.create({
@@ -12,7 +11,7 @@ export const Shadow = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 3,
+    shadowRadius: 15,
+    elevation: 5,
   }
 })
