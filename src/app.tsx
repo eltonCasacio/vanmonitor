@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import theme from '@styles/theme'
 import { ThemeProvider } from 'styled-components/native'
-import { AuthRoutes } from '@routes/auth.routes'
+import { Routes } from '@routes/index'
 import { NavigationContainer } from '@react-navigation/native';
 
 const App: React.FC = () => {
@@ -13,7 +13,7 @@ const App: React.FC = () => {
           barStyle={'dark-content'}
           backgroundColor={"transparent"}
         />
-        <AuthRoutes />
+        <Routes />
       </NavigationContainer>
     </ThemeProvider>
   )

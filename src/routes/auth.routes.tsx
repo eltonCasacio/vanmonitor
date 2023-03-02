@@ -10,7 +10,7 @@ export function AuthRoutes() {
     <Navigator
       initialRouteName='Cadastro Usuario'
       screenOptions={{
-       headerShown: false,
+        headerShown: false,
         animation: 'slide_from_right',
       }}
     >
