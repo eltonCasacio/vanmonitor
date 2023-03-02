@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  justify-content: space-between;
 `
 
 export const Content = styled.View`
@@ -18,7 +19,6 @@ export const ContentHeader = styled.View`
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  margin-bottom: 10px;
 `
 
 export const PlusIcon = styled.TouchableOpacity`
@@ -29,15 +29,16 @@ export const PlusIcon = styled.TouchableOpacity`
 export const ContentTitle = styled.Text``
 
 export const Footer = styled.View`
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   margin: 15px;
 `
 
 export const MarketingWrapper = styled.TouchableOpacity`
-  width: 100%;
-  margin: 10px 0;
+  margin-bottom: 10px;
 `
-export const MarketingIMG = styled.Image`
+export const MarketingIMG = styled.Image``
 
+export const Partners = styled.View`
+margin: 20px 0;
+align-items: center;
 `
