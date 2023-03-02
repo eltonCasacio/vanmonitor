@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native'
 import * as S from './styles'
 import InputMask from '@components/InputMask'
 import { Button } from '@components/Button'
 import { BoxShadow } from '@components/BoxShadow'
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   const [value, setValue] = useState("")
 
   return (
@@ -39,5 +38,3 @@ const Login: React.FC = () => {
     </S.Container>
   )
 }
-
-export { Login }

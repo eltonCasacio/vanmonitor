@@ -6,7 +6,7 @@ import { Button } from '@components/Button'
 import { NavigationContext } from '@react-navigation/native'
 
 
-export const RegisterUser: React.FC = () => {
+export const Home: React.FC = () => {
   const navigation = React.useContext(NavigationContext)
   const [value, setValue] = useState("")
 

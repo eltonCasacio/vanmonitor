@@ -8,20 +8,16 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export function AuthRoutes() {
   return (
     <Navigator
-      initialRouteName='Cadastro Usuario'>
+      initialRouteName='Cadastro Usuario'
+      screenOptions={{
+       headerShown: false,
+        animation: 'slide_from_right',
+      }}
+    >
       <Screen name="Login" component={Login} />
       <Screen
         name="Cadastro Usuario"
         component={RegisterUser}
-        options={{
-          title: 'Cadastro de Usuário',
-          headerStyle: {backgroundColor: '#0fbfbf'},
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-
-          }
-        }}
       />
       <Screen name="Cadastro Endereco" component={RegisterAddressUser} />
     </Navigator>
