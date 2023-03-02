@@ -11,7 +11,6 @@ export const Shadow = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
-    shadowRadius: 15,
-    elevation: 5,
+    elevation: 1,
   }
 })
