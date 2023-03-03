@@ -25,5 +25,5 @@ export const Footer = styled.View`
   margin: 0 10px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  background-color: ${({ theme }) => theme.COLORS.GREEN};
+  background-color: ${({ theme }) => theme.COLORS.YELLOW};
 `
