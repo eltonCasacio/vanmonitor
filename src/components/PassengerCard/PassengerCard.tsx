@@ -7,12 +7,20 @@ interface PassengerProps {
   schoolName: string
   passengerName: string
   driverName: string
+  handlePassenger: () => void
+  handleInformation: () => void
 }
 
-export const PassengerCard: React.FC<PassengerProps> = ({ schoolName, driverName, passengerName }) => {
+export const PassengerCard: React.FC<PassengerProps> = ({
+  schoolName,
+  driverName,
+  passengerName,
+  handleInformation,
+  handlePassenger
+}) => {
   return (
     <S.Container>
-      <S.Content>
+      <S.Content onPress={handlePassenger} >
         <Ionicons
           name={'person-circle-outline'}
           size={50}
@@ -23,9 +31,9 @@ export const PassengerCard: React.FC<PassengerProps> = ({ schoolName, driverName
         </S.InfoWrapper>
       </S.Content>
 
-      <S.Edit>
+      <S.Edit onPress={handleInformation}>
         <Icon
-          name={'edit'}
+          name={'infocirlceo'}
           size={20}
         />
       </S.Edit>

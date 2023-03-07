@@ -6,7 +6,7 @@ export const AppRoutes = () => {
   const { Navigator, Screen } = createNativeStackNavigator();
   return (
     <Navigator
-      initialRouteName='Map'
+      initialRouteName='Home'
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right'
