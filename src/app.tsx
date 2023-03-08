@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <NavigationContainer>
         <StatusBar
           barStyle={'dark-content'}
-          backgroundColor={theme.COLORS.WHITE_100}
+          backgroundColor="transparent"
         />
         <Routes />
       </NavigationContainer>

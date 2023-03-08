@@ -34,7 +34,7 @@ type CustomRoute = RouteProp<MapProps, any>
 
 
 export const Map: React.FC = () => {
-  const {params} = useRoute<CustomRoute>()
+  const { params } = useRoute<CustomRoute>()
   const [monitorMerker, setMonitorMerker] = React.useState<RegionProps>()
   const [driverMerker, setDriverMerker] = React.useState<Coords>()
   const [distance, setDistance] = React.useState<string>()
@@ -52,7 +52,7 @@ export const Map: React.FC = () => {
   }
 
   useEffect(() => {
-    //getCurrencyDriverPosition()
+    getCurrencyDriverPosition()
 
     Geolocation.getCurrentPosition(info => {
       setMonitorMerker({
@@ -62,12 +62,17 @@ export const Map: React.FC = () => {
         longitudeDelta: 0.0421
       })
     })
+
+    return function cleanup() {
+      clearInterval(interval)
+    };
+
   }, [])
 
   return (
     <S.Container>
       <S.Header>
-        <Header />
+        <Header comeBack />
       </S.Header>
 
       <S.Map
