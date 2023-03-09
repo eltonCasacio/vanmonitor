@@ -8,7 +8,6 @@ export interface LocalityResponse {
 export async function getLocality(route: string): Promise<LocalityResponse> {
   try {
     const { data } = await API.get<LocalityResponse>(`monitor/location/${route}`)
-    console.debug(data)
     if(data.latitude == 0){}
     return {
       latitude: data.latitude,
@@ -21,5 +20,4 @@ export async function getLocality(route: string): Promise<LocalityResponse> {
       longitude: 0
     }
   }
-
 }

@@ -10,7 +10,7 @@ export const Content = styled.View`
   max-height: 200px;
   padding: 15px;
   margin: 0 15px;
-  border-radius: 10PX;
+  border-radius: 3PX;
   background-color: ${({ theme }) => theme.COLORS.WHITE_100};
 `
 

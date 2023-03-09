@@ -1,26 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from './styles'
 import { Header } from '@components/Header'
 import { PassengerCard } from '@components/PassengerCard'
 import { PartnersCard } from '@components/PartnersCard'
-import { passengers } from '@utils/passengers/passengers'
 import { Partners } from '@utils/images/partners'
-import { FlatList } from 'react-native'
+import { FlatList, Text, TouchableOpacity } from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MarketingIMG from '@assets/images/mkt.png'
 import { NavigationContext } from '@react-navigation/native'
+import { GetPassengers, PassengerResponse } from '@services/home'
+import {useAuth} from 'contexts/auth'
+
 
 export const Home: React.FC = () => {
+  const { signout, user } = useAuth()
   const navigation = React.useContext(NavigationContext)
+  const [passengers, setPassengers] = useState<PassengerResponse[]>()
 
-  const goToMapView = () => {
+  async function handleLogout() {
+    signout()
+  }
+
+  async function handlePassenger(params: PassengerResponse) {
     navigation?.navigate('Map', {
-      passengerName: "Monique",
-      driverName: "Lurdes",
-      schoolName: "SESI 355",
-      route: "route_code"
+      passengerName: params?.name,
+      schoolName: params?.schoolName,
+      route: params?.routeCode
     })
   }
+
+  useEffect(() => {
+    GetPassengers("6c36caa4-1b36-410d-bffe-03c71b5b5539").then(res => setPassengers(res))
+  }, [])
 
   return (
     <S.Container>
@@ -38,11 +49,10 @@ export const Home: React.FC = () => {
           data={passengers}
           renderItem={({ item }) => (
             <PassengerCard
-              driverName={item.nomeMotorista}
-              passengerName={item.nome}
-              schoolName={item.nomeEscola}
+              passengerName={item.name}
+              schoolName={item.schoolName}
               handleInformation={() => { }}
-              handlePassenger={goToMapView}
+              handlePassenger={() => handlePassenger(item)}
             />
           )}
           scrollEnabled
@@ -72,6 +82,9 @@ export const Home: React.FC = () => {
           <S.MarketingIMG source={MarketingIMG} />
         </S.MarketingWrapper>
       </S.Footer>
+      <TouchableOpacity onPress={handleLogout}>
+        <Text style={{ fontSize: 20, margin: 20 }}>Siar</Text>
+      </TouchableOpacity>
     </S.Container>
   )
 }

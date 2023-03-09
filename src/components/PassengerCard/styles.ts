@@ -3,9 +3,10 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex-direction: row;
+  padding: 5px;
   margin: ${RFValue(3)}px 0;
-  border-radius: 10px;
-  background-color: ${({ theme }) => theme.COLORS.WHITE};
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY5};
 `
 
 export const Content = styled.TouchableOpacity`
@@ -20,11 +21,14 @@ export const InfoWrapper = styled.View`
 `
 
 export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.FONTS.PoppinsBold};
+  font-family: ${({ theme }) => theme.FONTS.PoppinsExtraBold};
+  font-size: 18px;
   color: ${({ theme }) => theme.COLORS.GREEN};
-  margin-bottom: -10px;
+  margin-bottom: -5px;
+  text-transform: uppercase;
 `
 export const Subtitle = styled.Text`
+  font-size: 16px;
   font-family: ${({ theme }) => theme.FONTS.PoppinsLightItalic};
   color: ${({ theme }) => theme.COLORS.GRAY3};
 `

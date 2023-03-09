@@ -3,9 +3,16 @@ import * as S from './styles'
 import InputMask from '@components/InputMask'
 import { Button } from '@components/Button'
 import { BoxShadow } from '@components/BoxShadow'
+import {useAuth} from 'contexts/auth'
+
 
 export const Login: React.FC = () => {
-  const [value, setValue] = useState("")
+  const { signin } = useAuth()
+  const [cpf, setCPF] = useState("")
+
+  async function handleSignin() {
+    signin()
+  }
 
   return (
     <S.Container>
@@ -18,8 +25,8 @@ export const Login: React.FC = () => {
           <InputMask
             inputType='cpf'
             placeholder={'digite seu CPF'}
-            inputValue={value}
-            onChangeText={text => setValue(text)}
+            inputValue={cpf}
+            onChangeText={text => setCPF(text)}
             autoCapitalize='none'
             autoCorrect={false}
           />
@@ -32,7 +39,7 @@ export const Login: React.FC = () => {
       <S.ContentFooter>
         <Button
           title='confirmar'
-          onPress={() => { }}
+          onPress={handleSignin}
         />
       </S.ContentFooter>
     </S.Container>

@@ -6,14 +6,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 interface PassengerProps {
   schoolName: string
   passengerName: string
-  driverName: string
   handlePassenger: () => void
   handleInformation: () => void
 }
 
 export const PassengerCard: React.FC<PassengerProps> = ({
   schoolName,
-  driverName,
   passengerName,
   handleInformation,
   handlePassenger
@@ -23,18 +21,18 @@ export const PassengerCard: React.FC<PassengerProps> = ({
       <S.Content onPress={handlePassenger} >
         <Ionicons
           name={'person-circle-outline'}
-          size={50}
+          size={60}
         />
         <S.InfoWrapper>
-          <S.Title>{schoolName} - {passengerName}</S.Title>
-          <S.Subtitle>motorista {driverName}</S.Subtitle>
+          <S.Title>{schoolName}</S.Title>
+          <S.Subtitle>{passengerName}</S.Subtitle>
         </S.InfoWrapper>
       </S.Content>
 
       <S.Edit onPress={handleInformation}>
         <Icon
           name={'infocirlceo'}
-          size={20}
+          size={30}
         />
       </S.Edit>
 

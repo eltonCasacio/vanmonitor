@@ -25,7 +25,6 @@ interface RegionProps extends Coords {
 
 type MapProps = {
   passengerName: any,
-  driverName: any,
   schoolName: any,
   route: any
 }
@@ -116,7 +115,6 @@ export const Map: React.FC = () => {
 
       <S.Footer>
         <Text>Chega em {distance}</Text>
-        <Text>MOTORISTA: {params?.driverName}</Text>
         <Text>ALUNO: {params?.passengerName}</Text>
         <Text>ESCOLA: {params?.schoolName}</Text>
       </S.Footer>
