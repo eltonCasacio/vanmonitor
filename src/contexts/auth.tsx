@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { Login } from '@services/login'
 import API from '@services/api'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from "react-native";
 
 interface UserData {
   id: string;
@@ -39,19 +40,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [])
 
   async function signin(cpf: string) {
-    const response = await Login(cpf)
-    const { token, user } = response
+    try {
+      const response = await Login(cpf)
+      const { token, user } = response
 
-    if (token) {
-      try {
+      if (token) {
         setUser(user)
         API.defaults.headers.head.Authorization = `Bearer ${token}`;
         await AsyncStorage.setItem('@vanmonit_User', JSON.stringify(user))
         await AsyncStorage.setItem('@vanmonit_token', token)
-      } catch (e) {
-        throw new Error(`Erro ao salvar token e usuario no storage${e}`)
       }
+    } catch (error) {
+      throw new Error("not found")
     }
+
   }
 
   function signout() {

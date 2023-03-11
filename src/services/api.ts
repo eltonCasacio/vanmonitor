@@ -1,8 +1,8 @@
 import axios from 'axios';
+import {Config} from '@config/conf'
 
 const api = axios.create({
-  // baseURL: 'http://api.webgazapp.com/api/',
-  baseURL: 'http://192.168.15.4:8000/',
+  baseURL: Config.BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

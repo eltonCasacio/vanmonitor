@@ -6,7 +6,7 @@ import PersonIcon from '@assets/images/person.png'
 import * as S from './styles'
 import Theme from '@styles/theme'
 
-import { Config } from '@config/google'
+import { Config } from '@config/conf'
 import Geolocation from '@react-native-community/geolocation'
 import MapViewDirections from 'react-native-maps-directions';
 import { Marker } from 'react-native-maps'

@@ -37,7 +37,7 @@ export const Description = styled.Text`
   `}
 `
 
-export const CreateAccountWrapper = styled(Pressable)`
+export const CreateAccountWrapper = styled.TouchableOpacity`
   align-items: center;
   flex-direction: row;
   justify-content:  center;
@@ -58,5 +58,12 @@ export const CreateAccountTextBold = styled.Text`
     color: ${theme.COLORS.GRAY2};
     font-family: ${theme.FONTS.PoppinsSemiBoldItalic};
     margin-left: ${RFValue(5)}px;
+  `}
+`
+
+export const MessageError = styled.Text`
+ ${({ theme }) => css`
+    color: ${theme.COLORS.RED};
+    font-family: ${theme.FONTS.PoppinsBoldItalic};
   `}
 `
