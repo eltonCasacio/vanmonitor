@@ -8,16 +8,11 @@ export interface LoginResponse {
   }
 }
 
-export async function Login(): Promise<LoginResponse> {
+export async function Login(cpf: string): Promise<LoginResponse> {
   try {
-    // const { data } = await API.get<LoginResponse>(`monitor/login`)
-    return {
-      user: {
-        id: "123",
-        name: 'John',
-      },
-      token: "12342f234fs342efd"
-    }
+    console.log("Login::",cpf);
+    const { data } = await API.get<LoginResponse>(`monitor/authenticate/${cpf}`)
+    return  data
   } catch (error) {
     throw new Error("Authentication Error: " + error)
   }

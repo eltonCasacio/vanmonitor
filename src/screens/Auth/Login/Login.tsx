@@ -3,15 +3,16 @@ import * as S from './styles'
 import InputMask from '@components/InputMask'
 import { Button } from '@components/Button'
 import { BoxShadow } from '@components/BoxShadow'
-import {useAuth} from 'contexts/auth'
-
+import { useAuth } from 'contexts/auth'
 
 export const Login: React.FC = () => {
   const { signin } = useAuth()
   const [cpf, setCPF] = useState("")
 
   async function handleSignin() {
-    signin()
+    if (cpf.length == 14) {
+      signin(cpf)
+    }
   }
 
   return (

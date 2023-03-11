@@ -12,7 +12,7 @@ interface AuthContextData {
   signed: boolean;
   user: UserData | null
   loading: boolean
-  signin(): Promise<void>
+  signin(cpf: string): Promise<void>
   signout(): void
 }
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -38,8 +38,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loadStorageData()
   }, [])
 
-  async function signin() {
-    const response = await Login()
+  async function signin(cpf: string) {
+    const response = await Login(cpf)
     const { token, user } = response
 
     if (token) {
