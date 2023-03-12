@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
+interface InputWrapperProps { hasError: boolean }
+
+
 export const Container = styled.View`
   height: 100%;
   justify-content: space-between;
@@ -18,7 +21,6 @@ export const ContentBody = styled.View`
 export const ContentFooter = styled.View`
 `
 
-interface InputWrapperProps { hasError: boolean }
 export const InputWrapper = styled.View<InputWrapperProps>`
 ${({ hasError, theme }) => css`
   margin: ${RFValue(10)}px 0;
