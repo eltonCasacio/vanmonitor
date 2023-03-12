@@ -18,8 +18,14 @@ export const ContentBody = styled.View`
 export const ContentFooter = styled.View`
 `
 
-export const InputWrapper = styled.View`
+interface InputWrapperProps { hasError: boolean }
+export const InputWrapper = styled.View<InputWrapperProps>`
+${({ hasError, theme }) => css`
   margin: ${RFValue(10)}px 0;
+  border-bottom-color: ${hasError? theme.COLORS.ATTENTION_LIGHT6: "transparent"};
+  border-bottom-width: 2px;
+`}
+
 `
 
 export const Description = styled.Text`

@@ -8,7 +8,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export function AuthRoutes() {
   return (
     <Navigator
-      initialRouteName='Login'
+      initialRouteName='Cadastro Usuario'
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right',
