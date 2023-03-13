@@ -52,9 +52,6 @@ export const RegisterUser: React.FC = () => {
 
   return (
     <S.Container>
-      <S.ContentHeader>
-        <S.Description>Cadastro do Usuário</S.Description>
-      </S.ContentHeader>
       <S.ContentBody>
         <S.InputWrapper hasError={userError.name}>
           <Input

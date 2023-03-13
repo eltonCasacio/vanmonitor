@@ -11,28 +11,13 @@ export const Container = styled.View`
   justify-content: space-between;
   padding: ${RFValue(50)}px ${RFValue(20)}px ${RFValue(20)}px;
 `
-export const ContentHeader = styled.View`
-  align-items: center;
+
+export const ContentBody = styled.View`
+  flex: 1;
+  justify-content: center;
 `
-export const ContentBody = styled.View``
+
 export const ContentFooter = styled.View``
-
-export const Description = styled.Text`
- ${({ theme }) => css`
-    color: ${theme.COLORS.GREEN};
-    font-size: ${RFValue(18)}px;
-    font-family: ${theme.FONTS.PoppinsItalic};
-  `}
-`
-
-export const Title = styled.Text`
- ${({ theme }) => css`
-    text-align: center;
-    color: ${theme.COLORS.GREEN};
-    font-size: ${RFValue(18)}px;
-    font-family: ${theme.FONTS.PoppinsItalic};
-  `}
-`
 
 export const InputWrapper = styled.View`
   margin: ${RFValue(10)}px 0;

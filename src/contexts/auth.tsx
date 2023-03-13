@@ -43,7 +43,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const response = await Login(cpf)
       const { token, user } = response
-
       if (token) {
         setUser(user)
         API.defaults.headers.head.Authorization = `Bearer ${token}`;
@@ -53,7 +52,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error) {
       throw new Error("not found")
     }
-
   }
 
   function signout() {

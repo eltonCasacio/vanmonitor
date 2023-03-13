@@ -6,6 +6,8 @@ import { Button } from '@components/Button'
 import { useRoute } from '@react-navigation/native'
 import { RouteProp } from '@react-navigation/native'
 import { Register } from '@services/monitor'
+import { Alert } from 'react-native'
+import { NavigationContext } from '@react-navigation/native'
 
 type Params = {
   name: any,
@@ -34,7 +36,10 @@ interface AddressError {
 }
 
 const RegisterAddressUser: React.FC = () => {
+  const navigation = React.useContext(NavigationContext)
+
   const { params } = useRoute<CustomRoute>()
+
   const [address, setAddress] = useState<Address>({
     cep: '',
     city: '',
@@ -44,6 +49,7 @@ const RegisterAddressUser: React.FC = () => {
     street: '',
     uf: ''
   })
+
   const [addressError, setAddressError] = useState<AddressError>({
     cep: false,
     city: false,
@@ -52,7 +58,6 @@ const RegisterAddressUser: React.FC = () => {
     street: false,
     uf: false
   })
-
 
   const changeAddress = (k: string, v: string) => {
     setAddress({ ...address, [k]: v })
@@ -70,6 +75,8 @@ const RegisterAddressUser: React.FC = () => {
         cpf: params?.cpf,
         phone_number: params?.phone
       })
+      .then(() => navigation?.navigate("Login"))
+      .catch(err => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
     }
   }
 
@@ -94,12 +101,7 @@ const RegisterAddressUser: React.FC = () => {
 
   return (
     <S.Container>
-      <S.ContentHeader>
-        <S.Description>Cadastro do Usuário</S.Description>
-        <S.Title>Endereço</S.Title>
-      </S.ContentHeader>
       <S.ContentBody>
-
         <S.InputWrapper>
           <S.StreetNumberWrapper>
             <S.Street>

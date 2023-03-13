@@ -10,7 +10,7 @@ export const Login: React.FC = () => {
   const navigation = React.useContext(NavigationContext)
   const { signin } = useAuth()
   const [cpf, setCPF] = useState("")
-  const [hasError, setHasError] = useState(false)
+  const [hasError, setHasError] = useState("")
 
   const [buttonDisable, setButtonDisable] = useState(true)
 
@@ -20,8 +20,10 @@ export const Login: React.FC = () => {
 
   async function handleSignin() {
     if (cpf.length == 14) {
-       await signin(cpf)
-        setHasError(true)
+      signin(cpf)
+      .then(() => setHasError("cpf invalido"))
+        .catch(() => setHasError("Erro inesperado, tente novamente mais tarde ou contacte o administrador"))
+
     }
   }
 
@@ -35,7 +37,6 @@ export const Login: React.FC = () => {
         <S.Title>Seja bem vindo(a) a Horus</S.Title>
       </S.ContentHeader>
       <S.ContentBody>
-        <S.Description>Login</S.Description>
         <S.MessageError>{hasError && "CPF invalido"}</S.MessageError>
         <BoxShadow>
           <InputMask
