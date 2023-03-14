@@ -2,11 +2,10 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { Login } from '@services/login'
 import API from '@services/api'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert } from "react-native";
 
 interface UserData {
-  id: string;
-  name: string
+  ID: string;
+  Name: string
 }
 
 interface AuthContextData {
@@ -42,11 +41,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   async function signin(cpf: string) {
     try {
       const response = await Login(cpf)
-      const { token, user } = response
+      const { token } = response
       if (token) {
-        setUser(user)
+        setUser(response.user)
         API.defaults.headers.head.Authorization = `Bearer ${token}`;
-        await AsyncStorage.setItem('@vanmonit_User', JSON.stringify(user))
+        await AsyncStorage.setItem('@vanmonit_User', JSON.stringify(response.user))
         await AsyncStorage.setItem('@vanmonit_token', token)
       }
     } catch (error) {

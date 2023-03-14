@@ -8,15 +8,15 @@ export const Container = styled.View`
   height: 100%;
   justify-content: center;
   padding: ${RFValue(20)}px;
+  padding-top: ${RFValue(50)}px;
 `
 
 export const ContentBody = styled.View`
-  flex: 0.6;
-  justify-content: flex-end;
+  flex: 1;
+  justify-content: center;
 `
 
 export const ContentFooter = styled.View`
-  flex: 0.4;
   justify-content: flex-end;
 `
 

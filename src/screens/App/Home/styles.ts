@@ -16,17 +16,22 @@ export const Content = styled.View`
 
 export const ContentHeader = styled.View`
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 0;
 `
 
-export const PlusIcon = styled.TouchableOpacity`
-  align-items: center;
-  width: 50px;
+export const ContentTitle = styled.Text`
+  font-family: ${({theme}) => theme.FONTS.PoppinsSemiBold};
+  color: ${({ theme }) => theme.COLORS.GRAY2};
 `
 
-export const ContentTitle = styled.Text``
+export const PlusIcon = styled.TouchableOpacity`
+  flex: 1;
+  align-items: flex-end;
+  width: 50px;
+  height: 100%;
+  color: ${({ theme }) => theme.COLORS.GRAY2};
+`
 
 export const Footer = styled.View`
   justify-content: space-between;
@@ -34,9 +39,11 @@ export const Footer = styled.View`
 `
 
 export const MarketingWrapper = styled.TouchableOpacity`
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `
-export const MarketingIMG = styled.Image``
+export const MarketingIMG = styled.Image`
+  width: 100%;
+`
 
 export const Partners = styled.View`
 margin: 20px 0;

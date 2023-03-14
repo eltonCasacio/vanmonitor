@@ -1,5 +1,4 @@
 import API from './api'
-
 export interface PassengerResponse {
   id: string
   name: string
@@ -11,12 +10,34 @@ export interface PassengerResponse {
   schoolName: string
 }
 
-export async function GetPassengers(id: string): Promise<PassengerResponse[]> {
+export interface DriverResponse {
+  id:string
+  cpf:string
+  name:string
+  nickname:string
+  phone:string
+  uf:string
+  city:string
+  street:string
+  number:string
+  cep:string
+}
+
+export async function GetPassengers(id = ''): Promise<PassengerResponse[]> {
   try {
-    const { data } = await API.get<PassengerResponse[]>(`passenger/list-passenger/${id}`)
+    const {data} = await API.get<PassengerResponse[]>(`passenger/list-passenger/${id}`)
     return data
   } catch (error) {
     console.error(error)
     return []
+  }
+}
+
+export async function GetDriverByRouteCode(routeCode = ''): Promise<DriverResponse> {
+  try {
+    const {data} = await API.get<DriverResponse>(`monitor/getdriver-by-route/${routeCode}`)
+    return data
+  } catch (error) {
+    throw new Error("get driver by route code error")
   }
 }

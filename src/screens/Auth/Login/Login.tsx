@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import * as S from './styles'
 import InputMask from '@components/InputMask'
 import { Button } from '@components/Button'
-import { BoxShadow } from '@components/BoxShadow'
 import { useAuth } from 'contexts/auth'
 import { NavigationContext } from '@react-navigation/native'
 
@@ -21,7 +20,7 @@ export const Login: React.FC = () => {
   async function handleSignin() {
     if (cpf.length == 14) {
       signin(cpf)
-      .then(() => setHasError("cpf invalido"))
+        .then(() => setHasError("cpf invalido"))
         .catch(() => setHasError("Erro inesperado, tente novamente mais tarde ou contacte o administrador"))
 
     }
@@ -38,16 +37,14 @@ export const Login: React.FC = () => {
       </S.ContentHeader>
       <S.ContentBody>
         <S.MessageError>{hasError && "CPF invalido"}</S.MessageError>
-        <BoxShadow>
-          <InputMask
-            inputType='cpf'
-            placeholder={'digite seu CPF'}
-            inputValue={cpf}
-            onChangeText={text => setCPF(text)}
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-        </BoxShadow>
+        <InputMask
+          inputType='cpf'
+          placeholder={'digite seu CPF'}
+          inputValue={cpf}
+          onChangeText={text => setCPF(text)}
+          autoCapitalize='none'
+          autoCorrect={false}
+        />
         <S.CreateAccountWrapper onPress={handleSigup}>
           <S.CreateAccountText>Não tem cadastro ainda?</S.CreateAccountText>
           <S.CreateAccountTextBold>Cadastre-se</S.CreateAccountTextBold>

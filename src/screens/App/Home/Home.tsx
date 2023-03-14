@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as S from './styles'
 import { Header } from '@components/Header'
 import { PassengerCard } from '@components/PassengerCard'
@@ -9,13 +9,25 @@ import Feather from 'react-native-vector-icons/Feather'
 import MarketingIMG from '@assets/images/mkt.png'
 import { NavigationContext } from '@react-navigation/native'
 import { GetPassengers, PassengerResponse } from '@services/home'
-import {useAuth} from 'contexts/auth'
+import { GetDriverByRouteCode } from '@services/home'
+import { useAuth } from 'contexts/auth'
 
+interface PassengerInfo {
+  id: string
+  name: string
+  nickname: string
+  routeCode: string
+  goes: boolean
+  comesback: boolean
+  registerConfirmed: boolean
+  schoolName: string
+  driverName: string
+}
 
 export const Home: React.FC = () => {
-  const { signout, user } = useAuth()
+  const { signout, loading, user } = useAuth()
   const navigation = React.useContext(NavigationContext)
-  const [passengers, setPassengers] = useState<PassengerResponse[]>()
+  const [data, setData] = useState<PassengerInfo[]>([])
 
   async function handleLogout() {
     signout()
@@ -30,13 +42,29 @@ export const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    GetPassengers("6c36caa4-1b36-410d-bffe-03c71b5b5539").then(res => setPassengers(res))
+    GetPassengers(user?.ID).then(passengers => {
+      passengers.map(passenger => {
+        setData([])
+        GetDriverByRouteCode(passenger.routeCode).then(driver => {
+          setData(prevValue => [...prevValue, {
+            id: passenger.id,
+            name: passenger.name,
+            nickname: passenger.nickname,
+            routeCode: passenger.routeCode,
+            goes: passenger.goes,
+            comesback: passenger.comesback,
+            registerConfirmed: passenger.registerConfirmed,
+            schoolName: passenger.schoolName,
+            driverName: driver.name
+          }])
+        })
+      })
+    })
   }, [])
 
   return (
     <S.Container>
       <Header />
-
       <S.Content>
         <S.ContentHeader>
           <S.ContentTitle>Passageiros</S.ContentTitle>
@@ -46,11 +74,12 @@ export const Home: React.FC = () => {
         </S.ContentHeader>
 
         <FlatList
-          data={passengers}
+          data={data}
           renderItem={({ item }) => (
             <PassengerCard
               passengerName={item.name}
               schoolName={item.schoolName}
+              driverName={item.driverName}
               handleInformation={() => { }}
               handlePassenger={() => handlePassenger(item)}
             />
@@ -77,13 +106,9 @@ export const Home: React.FC = () => {
         <S.MarketingWrapper>
           <S.MarketingIMG source={MarketingIMG} />
         </S.MarketingWrapper>
-
-        <S.MarketingWrapper>
-          <S.MarketingIMG source={MarketingIMG} />
-        </S.MarketingWrapper>
       </S.Footer>
       <TouchableOpacity onPress={handleLogout}>
-        <Text style={{ fontSize: 20, margin: 20 }}>Siar</Text>
+        <Text style={{ fontSize: 20, margin: 20 }}>Sair</Text>
       </TouchableOpacity>
     </S.Container>
   )

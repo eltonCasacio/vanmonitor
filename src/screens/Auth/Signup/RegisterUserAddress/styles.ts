@@ -9,7 +9,8 @@ var screenSize = Dimensions.get('screen').width
 export const Container = styled.View`
   height: 100%;
   justify-content: space-between;
-  padding: ${RFValue(50)}px ${RFValue(20)}px ${RFValue(20)}px;
+  padding: ${RFValue(20)}px;
+  padding-top: ${RFValue(50)}px;
 `
 
 export const ContentBody = styled.View`
@@ -20,7 +21,7 @@ export const ContentBody = styled.View`
 export const ContentFooter = styled.View``
 
 export const InputWrapper = styled.View`
-  margin: ${RFValue(10)}px 0;
+  margin: ${RFValue(5)}px;
 `
 
 export const StreetNumberWrapper = styled.View`
