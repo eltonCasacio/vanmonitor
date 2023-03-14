@@ -105,6 +105,7 @@ export const Home: React.FC = () => {
       <S.Footer>
         <S.MarketingWrapper>
           <S.MarketingIMG source={MarketingIMG} />
+          <S.MarketingIMG source={MarketingIMG} />
         </S.MarketingWrapper>
       </S.Footer>
       <TouchableOpacity onPress={handleLogout}>

@@ -40,9 +40,11 @@ export const Footer = styled.View`
 
 export const MarketingWrapper = styled.TouchableOpacity`
   margin-bottom: 5px;
-`
+  `
 export const MarketingIMG = styled.Image`
   width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
 `
 
 export const Partners = styled.View`
