@@ -14,7 +14,7 @@ interface InputProps {
   toggleHandle?: boolean
   onChangeText: ((text: string, rawText?: string | undefined) => void) | undefined
 }
-const Input: React.FC<InputProps & TextInputProps> = ({
+export const Input: React.FC<InputProps & TextInputProps> = ({
   leftIcon,
   rightIcon,
   iconNameLeft,
@@ -54,5 +54,3 @@ const Input: React.FC<InputProps & TextInputProps> = ({
     </S.Container>
   )
 }
-
-export default Input

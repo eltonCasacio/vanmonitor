@@ -1,1 +1,1 @@
-export {default} from './inputmask'
+export {InputMask} from './inputmask'

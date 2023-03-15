@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from './styles'
 import { Header } from '@components/Header'
 import { PassengerCard } from '@components/PassengerCard'
 import { PartnersCard } from '@components/PartnersCard'
 import { Partners } from '@utils/images/partners'
-import { FlatList, Text, TouchableOpacity } from 'react-native'
+import { Alert, FlatList, Text, TouchableOpacity } from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MarketingIMG from '@assets/images/mkt.png'
 import { NavigationContext } from '@react-navigation/native'
@@ -25,15 +25,15 @@ interface PassengerInfo {
 }
 
 export const Home: React.FC = () => {
-  const { signout, loading, user } = useAuth()
+  const { signout, user } = useAuth()
   const navigation = React.useContext(NavigationContext)
   const [data, setData] = useState<PassengerInfo[]>([])
 
-  async function handleLogout() {
+  const handleLogout = () => {
     signout()
   }
 
-  async function handlePassenger(params: PassengerResponse) {
+  const handlePassenger = (params: PassengerResponse) => {
     navigation?.navigate('Map', {
       passengerName: params?.name,
       schoolName: params?.schoolName,
@@ -41,9 +41,17 @@ export const Home: React.FC = () => {
     })
   }
 
-  useEffect(() => {
+  const handleInformation = (params: PassengerResponse) => {
+    Alert.alert('Not implemented', params.name)
+  }
+
+  const handlePassengerRegister = () => {
+    navigation?.navigate('PassengerRegister')
+  }
+
+  const loadData = () => {
     GetPassengers(user?.ID).then(passengers => {
-      passengers.map(passenger => {
+      passengers && passengers.map(passenger => {
         setData([])
         GetDriverByRouteCode(passenger.routeCode).then(driver => {
           setData(prevValue => [...prevValue, {
@@ -60,7 +68,20 @@ export const Home: React.FC = () => {
         })
       })
     })
+  }
+
+  useEffect(() => {
+    loadData()
   }, [])
+
+  React.useEffect(() => {
+    const unsubscribe = navigation?.addListener('state', () => {
+      loadData()
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
 
   return (
     <S.Container>
@@ -68,7 +89,7 @@ export const Home: React.FC = () => {
       <S.Content>
         <S.ContentHeader>
           <S.ContentTitle>Passageiros</S.ContentTitle>
-          <S.PlusIcon>
+          <S.PlusIcon onPress={handlePassengerRegister}>
             <Feather name='plus' size={22} />
           </S.PlusIcon>
         </S.ContentHeader>
@@ -80,7 +101,7 @@ export const Home: React.FC = () => {
               passengerName={item.name}
               schoolName={item.schoolName}
               driverName={item.driverName}
-              handleInformation={() => { }}
+              handleInformation={() => handleInformation(item)}
               handlePassenger={() => handlePassenger(item)}
             />
           )}
@@ -89,18 +110,22 @@ export const Home: React.FC = () => {
       </S.Content>
 
       <S.Partners>
-        <FlatList
-          horizontal
-          data={Partners}
-          renderItem={({ item }) => (
-            <PartnersCard
-              source={item.source}
-              title={item.title}
-            />
-          )}
-          scrollEnabled
+        <PartnersCard
+          source={Partners[0].source}
+          title={Partners[0].title}
+        />
+
+        <PartnersCard
+          source={Partners[1].source}
+          title={Partners[1].title}
+        />
+
+        <PartnersCard
+          source={Partners[2].source}
+          title={Partners[2].title}
         />
       </S.Partners>
+
 
       <S.Footer>
         <S.MarketingWrapper>
@@ -108,9 +133,6 @@ export const Home: React.FC = () => {
           <S.MarketingIMG source={MarketingIMG} />
         </S.MarketingWrapper>
       </S.Footer>
-      <TouchableOpacity onPress={handleLogout}>
-        <Text style={{ fontSize: 20, margin: 20 }}>Sair</Text>
-      </TouchableOpacity>
     </S.Container>
   )
 }

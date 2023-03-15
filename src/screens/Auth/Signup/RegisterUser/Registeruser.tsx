@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import * as S from './styles'
-import Input from '@components/Input'
-import InputMask from '@components/InputMask'
+import { Input } from '@components/Input'
+import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
 import { NavigationContext } from '@react-navigation/native'
-import { ScrollView } from 'react-native-gesture-handler'
 
 interface UserProps {
   name: string
@@ -54,35 +53,35 @@ export const RegisterUser: React.FC = () => {
   return (
     <S.Container>
       <S.ContentBody>
-          <S.InputWrapper hasError={userError.name}>
-            <Input
-              placeholder={'Nome do Responsavél'}
-              inputValue={user.name}
-              onChangeText={text => changeUser("name", text)}
-              autoCapitalize='none'
-              autoCorrect={false}
-            />
-          </S.InputWrapper>
-          <S.InputWrapper hasError={userError.cpf}>
-            <InputMask
-              inputType='cpf'
-              placeholder={'CPF do Responsavél'}
-              inputValue={user.cpf}
-              onChangeText={text => changeUser("cpf", text)}
-              autoCapitalize='none'
-              autoCorrect={false}
-            />
-          </S.InputWrapper>
-          <S.InputWrapper hasError={userError.phone}>
-            <InputMask
-              inputType='cel-phone'
-              placeholder={'Telefone do Responsavél'}
-              inputValue={user.phone}
-              onChangeText={text => changeUser("phone", text)}
-              autoCapitalize='none'
-              autoCorrect={false}
-            />
-          </S.InputWrapper>
+        <S.InputWrapper hasError={userError.name}>
+          <Input
+            placeholder={'Nome do Responsavél'}
+            inputValue={user.name}
+            onChangeText={text => changeUser("name", text)}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+        </S.InputWrapper>
+        <S.InputWrapper hasError={userError.cpf}>
+          <InputMask
+            inputType='cpf'
+            placeholder={'CPF do Responsavél'}
+            inputValue={user.cpf}
+            onChangeText={text => changeUser("cpf", text)}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+        </S.InputWrapper>
+        <S.InputWrapper hasError={userError.phone}>
+          <InputMask
+            inputType='cel-phone'
+            placeholder={'Telefone do Responsavél'}
+            inputValue={user.phone}
+            onChangeText={text => changeUser("phone", text)}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+        </S.InputWrapper>
       </S.ContentBody>
       <S.ContentFooter>
         <Button

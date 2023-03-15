@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import InputMask from '@components/InputMask'
+import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
 import { useAuth } from 'contexts/auth'
 import { NavigationContext } from '@react-navigation/native'

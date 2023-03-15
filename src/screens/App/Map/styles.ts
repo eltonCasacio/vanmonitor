@@ -6,6 +6,7 @@ export const Container = styled.View`
   justify-content: space-between;
 `
 export const Header = styled.View`
+margin: 15px;
   z-index: 999;
 `
 

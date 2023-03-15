@@ -17,7 +17,7 @@ interface InputProps {
   mask?: string
   onChangeText: ((text: string, rawText?: string | undefined) => void) | undefined
 }
-const InputMask: React.FC<InputProps & TextInputProps> = ({
+export const InputMask: React.FC<InputProps & TextInputProps> = ({
   leftIcon,
   rightIcon,
   iconNameLeft,
@@ -69,5 +69,3 @@ const InputMask: React.FC<InputProps & TextInputProps> = ({
     </S.Container>
   )
 }
-
-export default InputMask

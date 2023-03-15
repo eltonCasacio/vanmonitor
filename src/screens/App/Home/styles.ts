@@ -1,23 +1,23 @@
 import styled from 'styled-components/native'
+import { RFValue } from 'react-native-responsive-fontsize'
 
 export const Container = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.GRAY6};
+  height: 100%;
+  padding: ${RFValue(15)}px;
   justify-content: space-between;
 `
 
 export const Content = styled.View`
-  max-height: 200px;
-  padding: 15px;
-  margin: 0 15px;
-  border-radius: 3PX;
+  height: 170px;
+  padding: ${RFValue(10)}px 5px;
+  margin: 0 ${RFValue(10)}px;
   background-color: ${({ theme }) => theme.COLORS.WHITE_100};
 `
 
 export const ContentHeader = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 10px 10px 5px;
 `
 
 export const ContentTitle = styled.Text`
@@ -33,9 +33,14 @@ export const PlusIcon = styled.TouchableOpacity`
   color: ${({ theme }) => theme.COLORS.GRAY2};
 `
 
+export const Partners = styled.View`
+  flex-direction: row;
+  margin: 0 ${RFValue(10)}px;
+  justify-content: space-between;
+`
+
 export const Footer = styled.View`
   justify-content: space-between;
-  margin: 15px;
 `
 
 export const MarketingWrapper = styled.TouchableOpacity`
@@ -47,7 +52,3 @@ export const MarketingIMG = styled.Image`
   margin-bottom: 10px;
 `
 
-export const Partners = styled.View`
-margin: 20px 0;
-align-items: center;
-`
