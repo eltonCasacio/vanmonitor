@@ -1,3 +1,4 @@
 export * from './Home/Home'
 export * from './Map/Map'
-export * from './PassengerRegister/PassengerRegister'
+export * from './PassengerRegister'
+export * from './PassengerGoNoGo'

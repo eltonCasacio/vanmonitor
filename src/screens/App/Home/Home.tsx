@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import * as S from './styles'
 import { Header } from '@components/Header'
 import { PassengerCard } from '@components/PassengerCard'
 import { PartnersCard } from '@components/PartnersCard'
 import { Partners } from '@utils/images/partners'
-import { Alert, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MarketingIMG from '@assets/images/mkt.png'
 import { NavigationContext } from '@react-navigation/native'
@@ -38,7 +38,7 @@ export const Home: React.FC = () => {
   }
 
   const handleInformation = (params: PassengerResponse) => {
-    Alert.alert('Not implemented', params.name)
+    navigation?.navigate('PassengerGoNoGo', params)
   }
 
   const handlePassengerRegister = () => {
@@ -65,10 +65,6 @@ export const Home: React.FC = () => {
       })
     })
   }
-
-  useEffect(() => {
-    loadData()
-  }, [])
 
   React.useEffect(() => {
     const unsubscribe = navigation?.addListener('state', () => {
