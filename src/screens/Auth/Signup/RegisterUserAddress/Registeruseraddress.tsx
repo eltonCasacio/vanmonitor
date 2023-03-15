@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import * as S from './styles'
-import Input from '@components/Input'
-import InputMask from '@components/InputMask'
+import { Input } from '@components/Input'
+import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
 import { useRoute } from '@react-navigation/native'
 import { RouteProp } from '@react-navigation/native'
@@ -75,8 +75,8 @@ const RegisterAddressUser: React.FC = () => {
         cpf: params?.cpf,
         phone_number: params?.phone
       })
-      .then(() => navigation?.navigate("Login"))
-      .catch(err => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
+        .then(() => navigation?.navigate("Login"))
+        .catch(err => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
     }
   }
 

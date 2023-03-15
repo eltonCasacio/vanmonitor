@@ -8,7 +8,7 @@ export const Container = styled.View`
 `
 
 export const Content = styled.View`
-  height: 170px;
+  /* height: 170px; */
   padding: ${RFValue(10)}px 5px;
   margin: 0 ${RFValue(10)}px;
   background-color: ${({ theme }) => theme.COLORS.WHITE_100};

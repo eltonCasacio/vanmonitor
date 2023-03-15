@@ -18,7 +18,5 @@ export const InputContainer = styled(TextInputMask)`
   height: 100%;
   margin-top: 8px;
   font-family: ${({ theme }) => theme.FONTS.PoppinsMedium};
-  font-size: ${RFValue(16)}px;
-  text-align: center;
   color: ${({ theme }) => theme.COLORS.GRAY2};
 `
