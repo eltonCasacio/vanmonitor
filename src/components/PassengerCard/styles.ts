@@ -8,14 +8,13 @@ export const Container = styled.View`
   border-bottom-color: ${({ theme }) => theme.COLORS.GREEN};
 `
 
-export const Content = styled.TouchableOpacity`
+export const Content = styled.View`
   flex: 1;
   flex-direction: row;
   align-items: center;
 `
 
 export const InfoWrapper = styled.View`
-  flex: 1;
   padding: 0 5px;
 `
 
@@ -25,6 +24,7 @@ export const Title = styled.Text`
   text-transform: uppercase;
   line-height: 16px;
 `
+
 export const Subtitle = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.PoppinsLightItalic};
   font-size: ${RFValue(12)}px;
@@ -32,9 +32,13 @@ export const Subtitle = styled.Text`
   line-height: 16px;
 `
 
-export const Edit = styled.TouchableOpacity`
+export const EditWrapper = styled.View`
+  flex-direction: row;
+  width: 110px;
+  justify-content: space-between;
   align-items: center;
-  height: 100%;
-  width: ${RFValue(45)}px;
-  padding-top: ${RFValue(14)}px;
+  padding-right: 15px;
+`
+
+export const EditItem = styled.TouchableOpacity`
 `
