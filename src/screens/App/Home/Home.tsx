@@ -4,7 +4,7 @@ import { Header } from '@components/Header'
 import { PassengerCard } from '@components/PassengerCard'
 import { PartnersCard } from '@components/PartnersCard'
 import { Partners } from '@utils/images/partners'
-import { Alert, FlatList, Text, TouchableOpacity } from 'react-native'
+import { Alert, FlatList } from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MarketingIMG from '@assets/images/mkt.png'
 import { NavigationContext } from '@react-navigation/native'
@@ -25,13 +25,9 @@ interface PassengerInfo {
 }
 
 export const Home: React.FC = () => {
-  const { signout, user } = useAuth()
+  const { user } = useAuth()
   const navigation = React.useContext(NavigationContext)
   const [data, setData] = useState<PassengerInfo[]>([])
-
-  const handleLogout = () => {
-    signout()
-  }
 
   const handlePassenger = (params: PassengerResponse) => {
     navigation?.navigate('Map', {
