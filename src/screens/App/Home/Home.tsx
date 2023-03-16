@@ -45,10 +45,15 @@ export const Home: React.FC = () => {
     navigation?.navigate('PassengerRegister')
   }
 
+  const handleEdit = (params: PassengerInfo) => {
+    navigation?.setParams(params)
+    navigation?.navigate('PassengerEdit', params)
+  }
+
   const loadData = () => {
+    setData([])
     GetPassengers(user?.ID).then(passengers => {
       passengers && passengers.map(passenger => {
-        setData([])
         GetDriverByRouteCode(passenger.routeCode).then(driver => {
           setData(prevValue => [...prevValue, {
             id: passenger.id,
@@ -59,7 +64,7 @@ export const Home: React.FC = () => {
             comesback: passenger.comesback,
             registerConfirmed: passenger.registerConfirmed,
             schoolName: passenger.schoolName,
-            driverName: driver.name
+            driverName: driver.name,
           }])
         })
       })
@@ -95,6 +100,7 @@ export const Home: React.FC = () => {
               driverName={item.driverName}
               handleInformation={() => handleInformation(item)}
               handlePassenger={() => handlePassenger(item)}
+              handleEdit={() => handleEdit(item)}
             />
           )}
           scrollEnabled

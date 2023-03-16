@@ -1,1 +1,1 @@
-export * from './PassengerRegister'
+export * from './PassengerEdit'

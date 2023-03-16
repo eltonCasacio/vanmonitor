@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import * as S from './styles'
 import { Header } from '@components/Header'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
-import { useAuth } from '@contexts/auth'
-import { Register } from '@services/passenger'
-import { NavigationContext } from '@react-navigation/native'
+import { Edit, Delete } from '@services/passenger'
+import { NavigationContext, RouteProp } from '@react-navigation/native'
+import { useRoute } from '@react-navigation/native'
+import {useAuth} from '@contexts/auth'
+import theme from '@styles/theme'
 
 interface PassengerProps {
+  id: string
   name: string
   nickname: string
   routeCode: string
   schoolName: string
+  goes: boolean
+  comesback: boolean
+  registerConfirmed: boolean
   monitorID: string
 }
 
@@ -21,18 +27,23 @@ type PassengerErrors = {
   schoolName: boolean,
 }
 
-const initialProps: PassengerProps = {
-  name: '',
-  nickname: '',
-  schoolName: '',
-  routeCode: '',
-  monitorID: ''
-}
+type CustomRoute = RouteProp<any, any>
 
-export const PassengerRegister: React.FC = () => {
-  const { user } = useAuth()
+export const PassengerEdit: React.FC = () => {
+  const {user} = useAuth()
   const navigation = React.useContext(NavigationContext)
-  const [passenger, setPassenger] = useState<PassengerProps>(initialProps)
+  const { params } = useRoute<CustomRoute>()
+  const [passenger, setPassenger] = useState<PassengerProps>({
+    id: params?.id,
+    name: params?.name,
+    nickname: params?.nickname,
+    routeCode: params?.routeCode,
+    schoolName: params?.schoolName,
+    comesback: params?.comesback,
+    goes: params?.goes,
+    registerConfirmed: params?.registerConfirmed,
+    monitorID: user?.ID!
+  })
   const [errors, setErrors] = useState({} as PassengerErrors)
 
   const changePassenger = (k: string, v: string) => {
@@ -41,7 +52,15 @@ export const PassengerRegister: React.FC = () => {
 
   const handleConfirm = async () => {
     if (validate()) {
-      Register(passenger)
+      Edit(passenger)
+        .then(() => navigation?.goBack())
+        .catch(() => console.error("Erro ao registrar passageiro!"))
+    }
+  }
+
+  const handleDelete = () => {
+    if (validate()) {
+      Delete(passenger.id)
         .then(() => navigation?.goBack())
         .catch(() => console.error("Erro ao registrar passageiro!"))
     }
@@ -55,10 +74,6 @@ export const PassengerRegister: React.FC = () => {
     })
     return passenger.name != "" && passenger.routeCode != "" && passenger.schoolName != ""
   }
-
-  useEffect(() => {
-    initialProps.monitorID = user?.ID!
-  }, [])
 
   return (
     <S.Container>
@@ -105,6 +120,11 @@ export const PassengerRegister: React.FC = () => {
 
       <S.ContentFooter>
         <Button
+          title='excluir passageiro'
+          onPress={handleDelete}
+          style={{backgroundColor:theme.COLORS.ATTENTION, marginBottom:10}}
+        />
+         <Button
           title='confirmar'
           onPress={handleConfirm}
         />

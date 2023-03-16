@@ -11,6 +11,7 @@ interface PassengerProps {
   driverName: string
   handlePassenger: () => void
   handleInformation: () => void
+  handleEdit: () => void
 }
 
 export const PassengerCard: React.FC<PassengerProps> = ({
@@ -18,7 +19,8 @@ export const PassengerCard: React.FC<PassengerProps> = ({
   passengerName,
   driverName,
   handleInformation,
-  handlePassenger
+  handlePassenger,
+  handleEdit
 }) => {
   return (
     <S.Container>
@@ -35,7 +37,7 @@ export const PassengerCard: React.FC<PassengerProps> = ({
       </S.Content>
 
       <S.EditWrapper>
-        <S.EditItem>
+        <S.EditItem onPress={handleEdit}>
           <Icon
             name={'edit'}
             size={20}
