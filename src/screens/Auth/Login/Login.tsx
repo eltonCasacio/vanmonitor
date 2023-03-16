@@ -4,6 +4,7 @@ import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
 import { useAuth } from 'contexts/auth'
 import { NavigationContext } from '@react-navigation/native'
+import { FormatCPF } from '@utils/Auth/convertToOnlyNumbers'
 
 export const Login: React.FC = () => {
   const navigation = React.useContext(NavigationContext)
@@ -18,16 +19,19 @@ export const Login: React.FC = () => {
   }
 
   async function handleSignin() {
-    if (cpf.length == 14) {
+    if (cpf.length == 11) {
       signin(cpf)
         .then(() => setHasError("cpf invalido"))
         .catch(() => setHasError("Erro inesperado, tente novamente mais tarde ou contacte o administrador"))
-
     }
   }
 
+  const handleCPF = async (value: string) => {
+    const res = await FormatCPF(value)
+    setCPF(res)
+  }
   useEffect(() => {
-    setButtonDisable(cpf.length != 14)
+    setButtonDisable(cpf.length != 11)
   }, [cpf])
 
   return (
@@ -41,7 +45,7 @@ export const Login: React.FC = () => {
           inputType='cpf'
           placeholder={'digite seu CPF'}
           inputValue={cpf}
-          onChangeText={text => setCPF(text)}
+          onChangeText={text => handleCPF(text)}
           autoCapitalize='none'
           autoCorrect={false}
         />

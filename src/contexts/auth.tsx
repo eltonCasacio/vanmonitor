@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { Login } from '@services/login'
+import { FormatCPF } from '@utils/Auth/convertToOnlyNumbers'
 import API from '@services/api'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -38,7 +39,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loadStorageData()
   }, [])
 
-  async function signin(cpf: string) {
+  const signin = async (cpf: string) => {
     try {
       const response = await Login(cpf)
       const { token } = response
