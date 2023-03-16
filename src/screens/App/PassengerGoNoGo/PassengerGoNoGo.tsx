@@ -1,16 +1,52 @@
-import React from 'react'
-import { RouteProp, useRoute } from '@react-navigation/native'
+import React, { useState } from 'react'
+import { NavigationContext, RouteProp, useRoute } from '@react-navigation/native'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import MarketingIMG from '@assets/images/mkt.png'
+import { useAuth } from '@contexts/auth'
+import {Edit} from '@services/passenger'
 import { Header } from '@components/Header'
 import { GoNoGoCard } from '@components/GoNoGoCard'
 import { Button } from '@components/Button'
 import * as S from './styles'
-import MarketingIMG from '@assets/images/mkt.png'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 type CustomRoute = RouteProp<any, any>
+interface PassengerProps {
+  id: string
+  name: string
+  nickname: string
+  routeCode: string
+  schoolName: string
+  goes: boolean
+  comesback: boolean
+  registerConfirmed: boolean
+  monitorID: string
+  driverName: string
+}
 
 export const PassengerGoNoGo: React.FC = () => {
+  const navigation = React.useContext(NavigationContext)
   const { params } = useRoute<CustomRoute>()
+  const { user } = useAuth()
+  const [passenger, setPassenger] = useState<PassengerProps>({
+    id: params?.id,
+    name: params?.name,
+    nickname: params?.nickname,
+    routeCode: params?.routeCode,
+    schoolName: params?.schoolName,
+    goes: params?.goes,
+    comesback: params?.comesback,
+    registerConfirmed: params?.registerConfirmed,
+    monitorID: user?.ID!,
+    driverName: params?.driverName
+  })
+
+  const changeGoNoGo = async (k: string, v: boolean) => {
+    setPassenger({ ...passenger, [k]: v })
+  }
+
+  const handleConfirm = async () => {
+    Edit(passenger).then(() => navigation?.goBack())
+  }
 
   return (
     <S.Container>
@@ -20,22 +56,22 @@ export const PassengerGoNoGo: React.FC = () => {
 
       <S.Body>
         <S.TitleWrapper>
-          <S.Subtitle>{params?.schoolName} - {params?.driverName}</S.Subtitle>
-          <FontAwesome5 name={'shipping-fast'} size={15}/>
+          <S.Subtitle>{passenger.schoolName} - {passenger.driverName}</S.Subtitle>
+          <FontAwesome5 name={'shipping-fast'} size={15} />
         </S.TitleWrapper>
 
         <S.GoNoGoWrapper>
           <GoNoGoCard
             title='vai com a Van'
-            name={params?.name}
-            status={params?.goes}
-            handleTaggle={(value) => { }}
+            name={passenger.name}
+            status={passenger.goes}
+            handleTaggle={(value) => changeGoNoGo('goes', value)}
           />
           <GoNoGoCard
             title='volta com a Van'
-            name={params?.name}
-            status={params?.comesback}
-            handleTaggle={(value) => { }}
+            name={passenger.name}
+            status={passenger.comesback}
+            handleTaggle={(value) => changeGoNoGo('comesback', value)}
           />
         </S.GoNoGoWrapper>
 
@@ -45,7 +81,7 @@ export const PassengerGoNoGo: React.FC = () => {
       <S.Footer>
         <Button
           title='confirmar'
-          onPress={() => { }}
+          onPress={handleConfirm}
         />
       </S.Footer>
 
