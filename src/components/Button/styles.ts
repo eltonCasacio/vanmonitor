@@ -1,20 +1,18 @@
-import styled, { css } from "styled-components/native";
-import { RectButton } from 'react-native-gesture-handler';
+import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { StyleSheet } from "react-native";
 import theme from "@styles/theme";
 
 export const Container = styled.TouchableOpacity`
-    width: 100%;
-    height:  ${RFValue(50)}px;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    flex: 1;
+    padding: 10px;
     border-radius: ${RFValue(5)}px;
 `
 
 export const Title = styled.Text`
-  font-size:  ${RFValue(15)}px;
   color: ${({ theme }) => theme.COLORS.WHITE_100};
   font-family: ${theme.FONTS.PoppinsSemiBold};
   text-transform: uppercase;
@@ -25,8 +23,6 @@ export const Content = styled.View`
   align-items: center;
   justify-content: center;
 `
-
-
 
 export const BoxShadow = styled.View``
 export const Shadow = StyleSheet.create({

@@ -18,8 +18,8 @@ interface PopupMenuProps {
 const renderItem = (option: Option) => {
   return (
     <S.Item key={option.title} onPress={option.action}>
-      <Feather name={option.iconName} size={20} />
-      <S.Title>{option.title}</S.Title>
+      <Feather name={option.iconName} size={20} color={option.iconName == 'delete'? 'red': 'black'}/>
+      <S.Title iconName={option.iconName} >{option.title}</S.Title>
     </S.Item>
   )
 }

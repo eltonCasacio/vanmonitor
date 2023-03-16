@@ -76,6 +76,8 @@ export default {
       BACKGROUNDLIGHT: '#FFFFFF',
       BACKGROUNDOFICIAL: '#F2EFE5',
       BACKGROUNDDEFAULT: '#F1EFE5',
+      BACKGROUND_POPUP: 'rgba(0, 0, 0, 0.3)',
+
 
       BOX_SHADOW: 'rgba(0, 0, 0, 0.2)',
 

@@ -27,7 +27,7 @@ export const GoNoGoCard: React.FC<GoNoGoCardProps> = ({
     <S.Container>
       <Entypo
         name={'swap'}
-        size={18}
+        size={20}
         color={theme.COLORS.GRAY3}
       />
       <S.TitleWrapper>

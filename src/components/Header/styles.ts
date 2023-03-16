@@ -12,4 +12,6 @@ export const GoBack = styled.TouchableOpacity`
 `
 
 export const Menu = styled.TouchableOpacity`
+  width: 50px;
+  align-items: flex-end;
 `
