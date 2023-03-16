@@ -55,11 +55,13 @@ export const Login: React.FC = () => {
         </S.CreateAccountWrapper>
       </S.ContentBody>
       <S.ContentFooter>
-        <Button
-          disabled={buttonDisable}
-          title='confirmar'
-          onPress={handleSignin}
-        />
+        <S.ButtonWrapper>
+          <Button
+            disabled={buttonDisable}
+            title='confirmar'
+            onPress={handleSignin}
+          />
+        </S.ButtonWrapper>
       </S.ContentFooter>
     </S.Container>
   )

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import * as S from './styles'
 import Icons from 'react-native-vector-icons/Ionicons'
-import { TextInputProps } from 'react-native'
+import { Text, TextInputProps } from 'react-native'
 import { TextInputMaskTypeProp } from 'react-native-masked-text'
 import { useTheme } from 'styled-components'
 

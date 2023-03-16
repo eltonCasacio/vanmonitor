@@ -17,7 +17,8 @@ export const ContentBody = styled.View`
 `
 
 export const ContentFooter = styled.View`
-  justify-content: flex-end;
+  flex-direction: row;
+  height: 60px;
 `
 
 export const InputWrapper = styled.View<InputWrapperProps>`
@@ -26,4 +27,8 @@ export const InputWrapper = styled.View<InputWrapperProps>`
     border-bottom-color: ${hasError ? theme.COLORS.ATTENTION_LIGHT6 : "transparent"};
     border-bottom-width: 2px;
   `}
+`
+
+export const Label = styled.Text`
+  color: ${({theme}) => theme.COLORS.GREEN};
 `

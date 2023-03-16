@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Pressable } from 'react-native'
 
 export const Container = styled.View`
-  height: 100%;
+  flex: 1;
   justify-content: space-around;
   padding: ${RFValue(20)}px ${RFValue(20)}px;
 `
@@ -14,10 +13,8 @@ export const ContentHeader = styled.View`
 `
 
 export const ContentBody = styled.View`
-  align-items: center;
-`
-
-export const ContentFooter = styled.View`
+  flex: 1;
+  justify-content: center;
   align-items: center;
 `
 
@@ -26,6 +23,7 @@ export const Title = styled.Text`
     text-align: center;
     font-size: ${RFValue(20)}px;
     font-family: ${theme.FONTS.PoppinsMediumItalic};
+    margin-top: ${RFValue(50)}px;
   `}
 `
 
@@ -66,4 +64,13 @@ export const MessageError = styled.Text`
     color: ${theme.COLORS.RED};
     font-family: ${theme.FONTS.PoppinsBoldItalic};
   `}
+`
+
+export const ContentFooter = styled.View`
+  flex-direction: row;
+  height: 60px;
+`
+
+export const ButtonWrapper = styled.View`
+  flex: 1;
 `

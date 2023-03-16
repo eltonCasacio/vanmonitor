@@ -4,6 +4,7 @@ import { Input } from '@components/Input'
 import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
 import { NavigationContext } from '@react-navigation/native'
+import { Text } from 'react-native'
 
 interface UserProps {
   name: string
@@ -54,6 +55,7 @@ export const RegisterUser: React.FC = () => {
     <S.Container>
       <S.ContentBody>
         <S.InputWrapper hasError={userError.name}>
+          <S.Label>nome</S.Label>
           <Input
             placeholder={'Nome do Responsavél'}
             inputValue={user.name}
@@ -62,7 +64,9 @@ export const RegisterUser: React.FC = () => {
             autoCorrect={false}
           />
         </S.InputWrapper>
+
         <S.InputWrapper hasError={userError.cpf}>
+        <S.Label>cpf</S.Label>
           <InputMask
             inputType='cpf'
             placeholder={'CPF do Responsavél'}
@@ -72,7 +76,9 @@ export const RegisterUser: React.FC = () => {
             autoCorrect={false}
           />
         </S.InputWrapper>
+
         <S.InputWrapper hasError={userError.phone}>
+        <S.Label>telefone</S.Label>
           <InputMask
             inputType='cel-phone'
             placeholder={'Telefone do Responsavél'}

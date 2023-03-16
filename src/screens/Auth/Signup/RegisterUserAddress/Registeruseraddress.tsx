@@ -106,8 +106,8 @@ const RegisterAddressUser: React.FC = () => {
           <S.StreetNumberWrapper>
             <S.Street>
               <S.WrapperError hasError={addressError.street}>
+                <S.Label>rua</S.Label>
                 <Input
-                  placeholder={'Rua'}
                   inputValue={address.street}
                   onChangeText={text => changeAddress('street', text)}
                   autoCapitalize='none'
@@ -117,8 +117,8 @@ const RegisterAddressUser: React.FC = () => {
             </S.Street>
             <S.Number>
               <S.WrapperError hasError={addressError.number}>
+                <S.Label>número</S.Label>
                 <Input
-                  placeholder={'Número'}
                   inputValue={address.number}
                   onChangeText={text => changeAddress('number', text)}
                   autoCapitalize='none'
@@ -134,8 +134,8 @@ const RegisterAddressUser: React.FC = () => {
           <S.StreetNumberWrapper>
             <S.Street >
               <S.WrapperError hasError={addressError.city}>
+                <S.Label>cidade</S.Label>
                 <Input
-                  placeholder={'Cidade'}
                   inputValue={address.city}
                   onChangeText={text => changeAddress('city', text)}
                   autoCapitalize='none'
@@ -145,8 +145,8 @@ const RegisterAddressUser: React.FC = () => {
             </S.Street>
             <S.Number>
               <S.WrapperError hasError={addressError.uf}>
+                <S.Label>estado</S.Label>
                 <Input
-                  placeholder={'UF'}
                   inputValue={address.uf}
                   onChangeText={text => changeAddress('uf', text)}
                   autoCapitalize='none'
@@ -161,10 +161,10 @@ const RegisterAddressUser: React.FC = () => {
           <S.CEPComplementWrapper >
             <S.WrapperError hasError={addressError.cep}>
               <S.CEP>
+                <S.Label>cep</S.Label>
                 <InputMask
                   inputType='custom'
                   mask='99.999-999'
-                  placeholder={'CEP'}
                   inputValue={address.cep}
                   onChangeText={text => changeAddress('cep', text)}
                   autoCapitalize='none'
@@ -174,8 +174,8 @@ const RegisterAddressUser: React.FC = () => {
               </S.CEP>
             </S.WrapperError>
             <S.Complement>
+              <S.Label>complemento</S.Label>
               <Input
-                placeholder={'Complemento'}
                 inputValue={address.complement}
                 onChangeText={text => changeAddress('complement', text)}
                 autoCapitalize='none'
@@ -187,8 +187,8 @@ const RegisterAddressUser: React.FC = () => {
 
         <S.InputWrapper>
           <S.WrapperError hasError={addressError.neighbor}>
+          <S.Label>bairro</S.Label>
             <Input
-              placeholder={'Bairro'}
               inputValue={address.neighbor}
               onChangeText={text => changeAddress('neighbor', text)}
               autoCapitalize='none'
