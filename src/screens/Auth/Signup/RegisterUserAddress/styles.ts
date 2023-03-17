@@ -18,7 +18,7 @@ export const ContentBody = styled.View`
 `
 
 export const InputWrapper = styled.View`
-  margin: ${RFValue(5)}px;
+  margin: ${RFValue(10)}px 0;
 `
 
 export const StreetNumberWrapper = styled.View`
@@ -38,11 +38,11 @@ export const CEPComplementWrapper = styled.View`
   justify-content: space-between;
 `
 export const CEP = styled.View`
-  width: ${RFValue((screenSize/2)-60)}px;
+  width: ${RFValue((screenSize / 2) - 60)}px;
   margin-right: 5px;
 `
 export const Complement = styled.View`
-  width: ${RFValue((screenSize/2)-60)}px;
+  flex: 1;
 `
 
 export const WrapperError = styled.View<InputWrapperError>`
@@ -53,9 +53,9 @@ export const WrapperError = styled.View<InputWrapperError>`
 `
 
 export const Label = styled.Text`
-  color: ${({theme}) => theme.COLORS.GREEN};
+  color: ${({ theme }) => theme.COLORS.GREEN};
 `
 
 export const ContentFooter = styled.View`
-  height: 60px;
+  height: 40px;
 `

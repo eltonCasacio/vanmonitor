@@ -1,82 +1,58 @@
-import React, { useState } from 'react'
-import * as S from './styles'
+import { Button } from '@components/Button'
 import { Input } from '@components/Input'
 import { InputMask } from '@components/InputMask'
-import { Button } from '@components/Button'
-import { useRoute } from '@react-navigation/native'
-import { RouteProp } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { Register } from '@services/monitor'
+import React, { useCallback, useState } from 'react'
 import { Alert } from 'react-native'
-import { NavigationContext } from '@react-navigation/native'
+import * as S from './styles'
 
-type Params = {
-  name: any,
-  cpf: any,
-  phone: any
-}
-type CustomRoute = RouteProp<Params, any>
-
-interface Address {
-  street: string
-  number: string
-  city: string
-  uf: string
-  cep: string
-  complement: string
-  neighbor: string
+const Address = {
+  street: "",
+  number: "",
+  city: "",
+  uf: "",
+  cep: "",
+  complement: "",
+  neighbor: ""
 }
 
-interface AddressError {
-  street: boolean
-  number: boolean
-  city: boolean
-  uf: boolean
-  cep: boolean
-  neighbor: boolean
+const AddressError = {
+  street: false,
+  number: false,
+  city: false,
+  uf: false,
+  cep: false,
+  neighbor: false
 }
 
 const RegisterAddressUser: React.FC = () => {
-  const navigation = React.useContext(NavigationContext)
+  const { getState, navigate } = useNavigation()
+  const [address, setAddress] = useState(Address)
+  const [addressError, setAddressError] = useState(AddressError)
 
-  const { params } = useRoute<CustomRoute>()
-
-  const [address, setAddress] = useState<Address>({
-    cep: '',
-    city: '',
-    complement: '',
-    neighbor: '',
-    number: '',
-    street: '',
-    uf: ''
-  })
-
-  const [addressError, setAddressError] = useState<AddressError>({
-    cep: false,
-    city: false,
-    neighbor: false,
-    number: false,
-    street: false,
-    uf: false
-  })
-
-  const changeAddress = (k: string, v: string) => {
+  const changeAddress = useCallback((k: string, v: string) => {
     setAddress({ ...address, [k]: v })
-  }
+  }, [address])
 
   const handleSubmit = async () => {
     if (await validate()) {
-      Register({
-        cep: address.cep,
-        city: address.city,
-        number: address.number,
-        street: address.street,
-        uf: address.uf,
-        name: params?.name,
-        cpf: params?.cpf,
-        phone_number: params?.phone
-      })
-        .then(() => navigation?.navigate("Login"))
-        .catch(err => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
+      const route = getState().routes.find(item => item.name === 'RegisterAddress')
+      if (route?.params) {
+        Register({
+          cep: address.cep,
+          city: address.city,
+          number: address.number,
+          street: address.street,
+          uf: address.uf,
+          name: route.params.name!,
+          cpf: route.params.cpf,
+          phone_number: route.params.phone
+        })
+          .then(() => navigate("Login"))
+          .catch(err => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
+      }
+
     }
   }
 
@@ -106,8 +82,8 @@ const RegisterAddressUser: React.FC = () => {
           <S.StreetNumberWrapper>
             <S.Street>
               <S.WrapperError hasError={addressError.street}>
-                <S.Label>rua</S.Label>
                 <Input
+                  label='rua'
                   inputValue={address.street}
                   onChangeText={text => changeAddress('street', text)}
                   autoCapitalize='none'
@@ -117,8 +93,8 @@ const RegisterAddressUser: React.FC = () => {
             </S.Street>
             <S.Number>
               <S.WrapperError hasError={addressError.number}>
-                <S.Label>número</S.Label>
                 <Input
+                  label='nº'
                   inputValue={address.number}
                   onChangeText={text => changeAddress('number', text)}
                   autoCapitalize='none'
@@ -134,8 +110,8 @@ const RegisterAddressUser: React.FC = () => {
           <S.StreetNumberWrapper>
             <S.Street >
               <S.WrapperError hasError={addressError.city}>
-                <S.Label>cidade</S.Label>
                 <Input
+                  label='cidade'
                   inputValue={address.city}
                   onChangeText={text => changeAddress('city', text)}
                   autoCapitalize='none'
@@ -145,8 +121,8 @@ const RegisterAddressUser: React.FC = () => {
             </S.Street>
             <S.Number>
               <S.WrapperError hasError={addressError.uf}>
-                <S.Label>estado</S.Label>
                 <Input
+                  label='uf'
                   inputValue={address.uf}
                   onChangeText={text => changeAddress('uf', text)}
                   autoCapitalize='none'
@@ -161,8 +137,8 @@ const RegisterAddressUser: React.FC = () => {
           <S.CEPComplementWrapper >
             <S.WrapperError hasError={addressError.cep}>
               <S.CEP>
-                <S.Label>cep</S.Label>
                 <InputMask
+                  label='cep'
                   inputType='custom'
                   mask='99.999-999'
                   inputValue={address.cep}
@@ -174,8 +150,8 @@ const RegisterAddressUser: React.FC = () => {
               </S.CEP>
             </S.WrapperError>
             <S.Complement>
-              <S.Label>complemento</S.Label>
               <Input
+                label='complemento'
                 inputValue={address.complement}
                 onChangeText={text => changeAddress('complement', text)}
                 autoCapitalize='none'
@@ -187,8 +163,8 @@ const RegisterAddressUser: React.FC = () => {
 
         <S.InputWrapper>
           <S.WrapperError hasError={addressError.neighbor}>
-          <S.Label>bairro</S.Label>
             <Input
+              label='bairro'
               inputValue={address.neighbor}
               onChangeText={text => changeAddress('neighbor', text)}
               autoCapitalize='none'

@@ -4,6 +4,7 @@ import Icons from 'react-native-vector-icons/Ionicons'
 import { TextInputProps, TouchableOpacity } from 'react-native'
 
 interface InputProps {
+  label: string
   rightIcon?: boolean
   leftIcon?: boolean
   iconNameLeft?: string
@@ -15,6 +16,7 @@ interface InputProps {
   onChangeText: ((text: string, rawText?: string | undefined) => void) | undefined
 }
 export const Input: React.FC<InputProps & TextInputProps> = ({
+  label,
   leftIcon,
   rightIcon,
   iconNameLeft,
@@ -30,6 +32,10 @@ export const Input: React.FC<InputProps & TextInputProps> = ({
 
   return (
     <S.Container>
+      <S.Label>
+        {label && <S.LabelText>{label}</S.LabelText>}
+      </S.Label>
+
       {leftIcon && (
         <Icons
           name={iconNameLeft!}

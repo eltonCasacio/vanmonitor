@@ -3,22 +3,20 @@ import * as S from './styles'
 import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
 import { useAuth } from 'contexts/auth'
-import { NavigationContext } from '@react-navigation/native'
 import { FormatCPF } from '@utils/Auth/convertToOnlyNumbers'
+import { useNavigation } from '@react-navigation/native'
 
 export const Login: React.FC = () => {
-  const navigation = React.useContext(NavigationContext)
+  const { navigate } = useNavigation()
   const { signin } = useAuth()
   const [cpf, setCPF] = useState("")
   const [hasError, setHasError] = useState("")
 
   const [buttonDisable, setButtonDisable] = useState(true)
 
-  const handleSigup = () => {
-    navigation?.navigate('Cadastro Usuario')
-  }
+  const handleSigup = () => navigate('RegisterUser')
 
-  async function handleSignin() {
+  const handleSignin = () => {
     if (cpf.length == 11) {
       signin(cpf)
         .then(() => setHasError("cpf invalido"))
@@ -26,9 +24,9 @@ export const Login: React.FC = () => {
     }
   }
 
-  const handleCPF = async (value: string) => {
-    const res = await FormatCPF(value)
-    setCPF(res)
+  const handleCPF = (value: string) => {
+    FormatCPF(value).then(res => setCPF(res))
+
   }
   useEffect(() => {
     setButtonDisable(cpf.length != 11)
@@ -42,8 +40,8 @@ export const Login: React.FC = () => {
       <S.ContentBody>
         <S.MessageError>{hasError && "CPF invalido"}</S.MessageError>
         <InputMask
+          label='cpf'
           inputType='cpf'
-          placeholder={'digite seu CPF'}
           inputValue={cpf}
           onChangeText={text => handleCPF(text)}
           autoCapitalize='none'

@@ -3,38 +3,27 @@ import * as S from './styles'
 import { Input } from '@components/Input'
 import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
-import { NavigationContext } from '@react-navigation/native'
-import { Text } from 'react-native'
-
-interface UserProps {
-  name: string
-  cpf: string
-  phone: string
-}
-
-interface ErrorProps {
-  name: boolean
-  cpf: boolean
-  phone: boolean
-}
+import { useNavigation } from '@react-navigation/native'
 
 export const RegisterUser: React.FC = () => {
-  const navigation = React.useContext(NavigationContext)
-  const [user, setUser] = useState<UserProps>({
-    cpf: '',
-    name: '',
-    phone: ''
-  })
-
-  const [userError, setUserError] = useState<ErrorProps>({
-    cpf: false,
+  const InitialUserProps = {
+    name: "",
+    cpf: "",
+    phone: ""
+  }
+  const ErrorProps = {
     name: false,
-    phone: false
-  })
+    cpf: false,
+    phone: false,
+  }
+
+  const { navigate } = useNavigation()
+  const [user, setUser] = useState(InitialUserProps)
+  const [userError, setUserError] = useState(ErrorProps)
 
   const goToRegisterAddress = async () => {
     if (await validateUser()) {
-      navigation?.navigate('Cadastro Endereco', user)
+      navigate('RegisterAddress', user)
     }
   }
 
@@ -55,9 +44,8 @@ export const RegisterUser: React.FC = () => {
     <S.Container>
       <S.ContentBody>
         <S.InputWrapper hasError={userError.name}>
-          <S.Label>nome</S.Label>
           <Input
-            placeholder={'Nome do Responsavél'}
+            label='nome'
             inputValue={user.name}
             onChangeText={text => changeUser("name", text)}
             autoCapitalize='none'
@@ -66,10 +54,9 @@ export const RegisterUser: React.FC = () => {
         </S.InputWrapper>
 
         <S.InputWrapper hasError={userError.cpf}>
-        <S.Label>cpf</S.Label>
           <InputMask
+            label='cpf'
             inputType='cpf'
-            placeholder={'CPF do Responsavél'}
             inputValue={user.cpf}
             onChangeText={text => changeUser("cpf", text)}
             autoCapitalize='none'
@@ -78,10 +65,9 @@ export const RegisterUser: React.FC = () => {
         </S.InputWrapper>
 
         <S.InputWrapper hasError={userError.phone}>
-        <S.Label>telefone</S.Label>
           <InputMask
+            label='Tel'
             inputType='cel-phone'
-            placeholder={'Telefone do Responsavél'}
             inputValue={user.phone}
             onChangeText={text => changeUser("phone", text)}
             autoCapitalize='none'

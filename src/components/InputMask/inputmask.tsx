@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as S from './styles'
 import Icons from 'react-native-vector-icons/Ionicons'
-import { Text, TextInputProps } from 'react-native'
+import { TextInputProps } from 'react-native'
 import { TextInputMaskTypeProp } from 'react-native-masked-text'
 import { useTheme } from 'styled-components'
 
 interface InputProps {
+  label: string
   rightIcon?: boolean
   leftIcon?: boolean
   iconNameLeft?: string
@@ -18,6 +19,7 @@ interface InputProps {
   onChangeText: ((text: string, rawText?: string | undefined) => void) | undefined
 }
 export const InputMask: React.FC<InputProps & TextInputProps> = ({
+  label,
   leftIcon,
   rightIcon,
   iconNameLeft,
@@ -33,6 +35,9 @@ export const InputMask: React.FC<InputProps & TextInputProps> = ({
   const { COLORS } = useTheme()
   return (
     <S.Container>
+      <S.Label>
+        {label && <S.LabelText>{label}</S.LabelText>}
+      </S.Label>
       {leftIcon && (
         <Icons
           name={iconNameLeft!}

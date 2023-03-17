@@ -19,8 +19,8 @@ export function AuthRoutes() {
       }}
     >
       <Screen name="Login" component={Login} />
-      <Screen name="Cadastro Usuario" component={RegisterUser} />
-      <Screen name="Cadastro Endereco" component={RegisterAddressUser} />
+      <Screen name="RegisterUser" component={RegisterUser} />
+      <Screen name="RegisterAddress" component={RegisterAddressUser} />
     </Navigator>
   );
 }

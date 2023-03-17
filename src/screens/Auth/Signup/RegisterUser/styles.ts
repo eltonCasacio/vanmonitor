@@ -18,7 +18,7 @@ export const ContentBody = styled.View`
 
 export const ContentFooter = styled.View`
   flex-direction: row;
-  height: 60px;
+  height: 40px;
 `
 
 export const InputWrapper = styled.View<InputWrapperProps>`
