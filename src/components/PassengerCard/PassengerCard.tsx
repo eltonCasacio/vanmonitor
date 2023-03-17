@@ -9,7 +9,7 @@ interface PassengerProps {
   schoolName: string
   passengerName: string
   driverName: string
-  handlePassenger: () => void
+  handleGoToMap: () => void
   handleInformation: () => void
   handleEdit: () => void
 }
@@ -19,7 +19,7 @@ export const PassengerCard: React.FC<PassengerProps> = ({
   passengerName,
   driverName,
   handleInformation,
-  handlePassenger,
+  handleGoToMap,
   handleEdit
 }) => {
   return (
@@ -53,7 +53,7 @@ export const PassengerCard: React.FC<PassengerProps> = ({
           />
         </S.EditItem>
 
-        <S.EditItem onPress={handlePassenger}>
+        <S.EditItem onPress={handleGoToMap}>
           <Ionicons
             name={'map'}
             size={20}

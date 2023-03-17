@@ -55,7 +55,7 @@ const RegisterAddressUser: React.FC = () => {
         phone_number: params.phone
       })
         .then(() => navigate("Login"))
-        .catch(() => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
+        .catch((err) => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador", err))
     }
   }
 

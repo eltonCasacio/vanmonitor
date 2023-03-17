@@ -4,19 +4,20 @@ import { Input } from '@components/Input'
 import { InputMask } from '@components/InputMask'
 import { Button } from '@components/Button'
 import { useNavigation } from '@react-navigation/native'
+import { FormatCPF } from '@utils/Auth/convertToOnlyNumbers'
+
+const InitialUserProps = {
+  name: "",
+  cpf: "",
+  phone: ""
+}
+const ErrorProps = {
+  name: false,
+  cpf: false,
+  phone: false,
+}
 
 export const RegisterUser: React.FC = () => {
-  const InitialUserProps = {
-    name: "",
-    cpf: "",
-    phone: ""
-  }
-  const ErrorProps = {
-    name: false,
-    cpf: false,
-    phone: false,
-  }
-
   const { navigate } = useNavigation()
   const [user, setUser] = useState(InitialUserProps)
   const [userError, setUserError] = useState(ErrorProps)
@@ -31,13 +32,17 @@ export const RegisterUser: React.FC = () => {
     setUser({ ...user, [k]: v })
   }
 
+  const changeCPF = (cpf: string) => {
+    FormatCPF(cpf).then((res) => setUser({ ...user, cpf: res }))
+  }
+
   async function validateUser(): Promise<boolean> {
     setUserError({
-      cpf: user.cpf.length < 14,
+      cpf: user.cpf.length < 11,
       name: user.name == "",
       phone: user.phone.length < 15
     })
-    return user.cpf.length == 14 && user.name != "" && user.phone.length == 15
+    return user.cpf.length == 11 && user.name != "" && user.phone.length == 15
   }
 
   return (
@@ -58,7 +63,7 @@ export const RegisterUser: React.FC = () => {
             label='cpf'
             inputType='cpf'
             inputValue={user.cpf}
-            onChangeText={text => changeUser("cpf", text)}
+            onChangeText={text => changeCPF(text)}
             autoCapitalize='none'
             autoCorrect={false}
           />

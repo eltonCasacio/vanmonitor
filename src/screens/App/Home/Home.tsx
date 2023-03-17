@@ -7,7 +7,7 @@ import { Partners } from '@utils/images/partners'
 import { FlatList } from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import MarketingIMG from '@assets/images/mkt.png'
-import { NavigationContext } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { GetPassengers, PassengerResponse } from '@services/home'
 import { GetDriverByRouteCode } from '@services/home'
 import { useAuth } from 'contexts/auth'
@@ -26,28 +26,24 @@ interface PassengerInfo {
 
 export const Home: React.FC = () => {
   const { user } = useAuth()
-  const navigation = React.useContext(NavigationContext)
+  const {navigate, addListener, isFocused} = useNavigation()
   const [data, setData] = useState<PassengerInfo[]>([])
 
-  const handlePassenger = (params: PassengerResponse) => {
-    navigation?.navigate('Map', {
-      passengerName: params?.name,
-      schoolName: params?.schoolName,
-      route: params?.routeCode
-    })
+  const handleGoToMap = (params: PassengerResponse) => {
+    navigate('Map', params)
   }
 
   const handleInformation = (params: PassengerResponse) => {
-    navigation?.navigate('PassengerGoNoGo', params)
+    navigate('PassengerGoNoGo', params)
   }
 
   const handlePassengerRegister = () => {
-    navigation?.navigate('PassengerRegister')
+    navigate('PassengerRegister')
   }
 
   const handleEdit = (params: PassengerInfo) => {
-    navigation?.setParams(params)
-    navigation?.navigate('PassengerEdit', params)
+    // setParams(params)
+    navigate('PassengerEdit', params)
   }
 
   const loadData = () => {
@@ -72,12 +68,12 @@ export const Home: React.FC = () => {
   }
 
   React.useEffect(() => {
-    const unsubscribe = navigation?.addListener('state', () => {
+    const unsubscribe = addListener('state', () => {
       loadData()
     });
 
     return unsubscribe;
-  }, [navigation]);
+  }, [isFocused]);
 
 
   return (
@@ -99,7 +95,7 @@ export const Home: React.FC = () => {
               schoolName={item.schoolName}
               driverName={item.driverName}
               handleInformation={() => handleInformation(item)}
-              handlePassenger={() => handlePassenger(item)}
+              handleGoToMap={() => handleGoToMap(item)}
               handleEdit={() => handleEdit(item)}
             />
           )}

@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import API from './api'
 
 interface MonitorRegisterInput {
@@ -13,6 +12,8 @@ interface MonitorRegisterInput {
 }
 
 export async function Register(monitorData: MonitorRegisterInput): Promise<void> {
+  console.debug('sei la', monitorData)
+
   await API.post(`monitor/auth`, monitorData)
 }
 

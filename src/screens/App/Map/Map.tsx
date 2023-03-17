@@ -8,10 +8,10 @@ import Theme from '@styles/theme'
 
 import { Config } from '@config/conf'
 import Geolocation from '@react-native-community/geolocation'
-import MapViewDirections from 'react-native-maps-directions';
+import MapViewDirections from 'react-native-maps-directions'
 import { Marker } from 'react-native-maps'
 import { getLocality } from '@services/map'
-import { RouteProp, useRoute } from '@react-navigation/native'
+import { useRoute } from '@react-navigation/native'
 
 interface Coords {
   latitude: number
@@ -29,11 +29,8 @@ type MapProps = {
   route: any
 }
 
-type CustomRoute = RouteProp<MapProps, any>
-
-
 export const Map: React.FC = () => {
-  const { params } = useRoute<CustomRoute>()
+  const params = useRoute().params as MapProps
   const [monitorMerker, setMonitorMerker] = React.useState<RegionProps>()
   const [driverMerker, setDriverMerker] = React.useState<Coords>()
   const [distance, setDistance] = React.useState<string>()
@@ -51,6 +48,7 @@ export const Map: React.FC = () => {
   }
 
   useEffect(() => {
+    console.debug('PARAMENTROS::', params)
     getCurrencyDriverPosition()
 
     Geolocation.getCurrentPosition(info => {
