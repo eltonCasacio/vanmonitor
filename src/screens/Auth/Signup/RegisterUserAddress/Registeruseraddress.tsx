@@ -1,7 +1,7 @@
 import { Button } from '@components/Button'
 import { Input } from '@components/Input'
 import { InputMask } from '@components/InputMask'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { Register } from '@services/monitor'
 import React, { useCallback, useState } from 'react'
 import { Alert } from 'react-native'
@@ -26,8 +26,15 @@ const AddressError = {
   neighbor: false
 }
 
+type NavigationParams = {
+  cpf: string
+  name: string
+  phone: string
+}
+
 const RegisterAddressUser: React.FC = () => {
-  const { getState, navigate } = useNavigation()
+  const params = useRoute().params as NavigationParams
+  const { navigate } = useNavigation()
   const [address, setAddress] = useState(Address)
   const [addressError, setAddressError] = useState(AddressError)
 
@@ -37,22 +44,18 @@ const RegisterAddressUser: React.FC = () => {
 
   const handleSubmit = async () => {
     if (await validate()) {
-      const route = getState().routes.find(item => item.name === 'RegisterAddress')
-      if (route?.params) {
-        Register({
-          cep: address.cep,
-          city: address.city,
-          number: address.number,
-          street: address.street,
-          uf: address.uf,
-          name: route.params.name!,
-          cpf: route.params.cpf,
-          phone_number: route.params.phone
-        })
-          .then(() => navigate("Login"))
-          .catch(err => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
-      }
-
+      Register({
+        cep: address.cep,
+        city: address.city,
+        number: address.number,
+        street: address.street,
+        uf: address.uf,
+        name: params.name,
+        cpf: params.cpf,
+        phone_number: params.phone
+      })
+        .then(() => navigate("Login"))
+        .catch(() => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador"))
     }
   }
 
