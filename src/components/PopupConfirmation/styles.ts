@@ -2,7 +2,6 @@ import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 
 const height = Dimensions.get("screen").height
-const width = Dimensions.get("screen").height
 
 export const Container = styled.View`
   position: absolute;

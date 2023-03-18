@@ -67,7 +67,7 @@ export const PassengerRegister: React.FC = () => {
       <S.ContentBody>
         <S.InputWrapper hasError={errors.name}>
           <Input
-            placeholder={'nome'}
+            label='nome'
             inputValue={passenger.name}
             onChangeText={text => changePassenger("name", text)}
             autoCapitalize='none'
@@ -76,7 +76,7 @@ export const PassengerRegister: React.FC = () => {
         </S.InputWrapper>
         <S.InputWrapper hasError={false}>
           <Input
-            placeholder={'apelido'}
+            label='apelido'
             inputValue={passenger.nickname}
             onChangeText={text => changePassenger("nickname", text)}
             autoCapitalize='none'
@@ -85,7 +85,7 @@ export const PassengerRegister: React.FC = () => {
         </S.InputWrapper>
         <S.InputWrapper hasError={errors.schoolName}>
           <Input
-            placeholder={'escola'}
+            label='escola'
             inputValue={passenger.schoolName}
             onChangeText={text => changePassenger("schoolName", text)}
             autoCapitalize='none'
@@ -94,7 +94,7 @@ export const PassengerRegister: React.FC = () => {
         </S.InputWrapper>
         <S.InputWrapper hasError={errors.routeCode}>
           <Input
-            placeholder={'código da rota'}
+            label='codigo da rota'
             inputValue={passenger.routeCode}
             onChangeText={text => changePassenger("routeCode", text)}
             autoCapitalize='none'

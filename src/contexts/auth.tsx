@@ -31,7 +31,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const [storageUser, storageToken] = storageValues
       if (storageUser[1] && storageToken[1]) {
         API.defaults.headers.head.Authorization = `Bearer ${storageToken[1]}`;
-        console.debug('CONTEXT:: USEEFFECT', API.defaults.headers.head.Authorization)
         setUser(JSON.parse(storageUser[1]))
       }
       setLoading(false)

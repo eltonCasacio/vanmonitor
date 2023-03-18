@@ -11,21 +11,21 @@ export interface PassengerResponse {
 }
 
 export interface DriverResponse {
-  id:string
-  cpf:string
-  name:string
-  nickname:string
-  phone:string
-  uf:string
-  city:string
-  street:string
-  number:string
-  cep:string
+  id: string
+  cpf: string
+  name: string
+  nickname: string
+  phone: string
+  uf: string
+  city: string
+  street: string
+  number: string
+  cep: string
 }
 
 export async function GetPassengers(id = ''): Promise<PassengerResponse[]> {
   try {
-    const {data} = await API.get<PassengerResponse[]>(`passenger/list-passenger/${id}`)
+    const { data } = await API.get<PassengerResponse[]>(`passenger/list-passenger/${id}`)
     return data
   } catch (error) {
     console.error(error)
@@ -35,7 +35,7 @@ export async function GetPassengers(id = ''): Promise<PassengerResponse[]> {
 
 export async function GetDriverByRouteCode(routeCode = ''): Promise<DriverResponse> {
   try {
-    const {data} = await API.get<DriverResponse>(`monitor/getdriver-by-route/${routeCode}`)
+    const { data } = await API.get<DriverResponse>(`monitor/getdriver-by-route/${routeCode}`)
     return data
   } catch (error) {
     throw new Error("get driver by route code error")

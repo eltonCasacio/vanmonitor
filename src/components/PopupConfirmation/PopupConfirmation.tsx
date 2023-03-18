@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { GestureResponderEvent, Modal, SafeAreaView } from 'react-native'
 import { Button } from '@components/Button'
 import * as S from './styles'

@@ -25,7 +25,6 @@ export const Register = async (data: PassengerRegisterInput): Promise<void> => {
 }
 
 export const Edit = async (data: PassengerEditInput): Promise<void> => {
-  console.debug("DATA????", data)
   await API.put(`passenger`, data)
 }
 

@@ -12,8 +12,6 @@ interface MonitorRegisterInput {
 }
 
 export async function Register(monitorData: MonitorRegisterInput): Promise<void> {
-  console.debug('sei la', monitorData)
-
   await API.post(`monitor/auth`, monitorData)
 }
 

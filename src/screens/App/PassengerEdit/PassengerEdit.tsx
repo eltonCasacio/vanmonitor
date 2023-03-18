@@ -6,7 +6,7 @@ import { Button } from '@components/Button'
 import { Edit, Delete } from '@services/passenger'
 import { NavigationContext, RouteProp } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native'
-import {useAuth} from '@contexts/auth'
+import { useAuth } from '@contexts/auth'
 import theme from '@styles/theme'
 
 interface PassengerProps {
@@ -30,7 +30,7 @@ type PassengerErrors = {
 type CustomRoute = RouteProp<any, any>
 
 export const PassengerEdit: React.FC = () => {
-  const {user} = useAuth()
+  const { user } = useAuth()
   const navigation = React.useContext(NavigationContext)
   const { params } = useRoute<CustomRoute>()
   const [passenger, setPassenger] = useState<PassengerProps>({
@@ -82,7 +82,7 @@ export const PassengerEdit: React.FC = () => {
       <S.ContentBody>
         <S.InputWrapper hasError={errors.name}>
           <Input
-            placeholder={'nome'}
+            label='nome'
             inputValue={passenger.name}
             onChangeText={text => changePassenger("name", text)}
             autoCapitalize='none'
@@ -91,7 +91,7 @@ export const PassengerEdit: React.FC = () => {
         </S.InputWrapper>
         <S.InputWrapper hasError={false}>
           <Input
-            placeholder={'apelido'}
+            label='apelido'
             inputValue={passenger.nickname}
             onChangeText={text => changePassenger("nickname", text)}
             autoCapitalize='none'
@@ -100,7 +100,7 @@ export const PassengerEdit: React.FC = () => {
         </S.InputWrapper>
         <S.InputWrapper hasError={errors.schoolName}>
           <Input
-            placeholder={'escola'}
+            label='escola'
             inputValue={passenger.schoolName}
             onChangeText={text => changePassenger("schoolName", text)}
             autoCapitalize='none'
@@ -109,7 +109,7 @@ export const PassengerEdit: React.FC = () => {
         </S.InputWrapper>
         <S.InputWrapper hasError={errors.routeCode}>
           <Input
-            placeholder={'código da rota'}
+            label='codigo da rota'
             inputValue={passenger.routeCode}
             onChangeText={text => changePassenger("routeCode", text)}
             autoCapitalize='none'
@@ -122,9 +122,9 @@ export const PassengerEdit: React.FC = () => {
         <Button
           title='excluir passageiro'
           onPress={handleDelete}
-          style={{backgroundColor:theme.COLORS.ATTENTION, marginBottom:10}}
+          style={{ backgroundColor: theme.COLORS.ATTENTION, marginBottom: 10 }}
         />
-         <Button
+        <Button
           title='confirmar'
           onPress={handleConfirm}
         />
