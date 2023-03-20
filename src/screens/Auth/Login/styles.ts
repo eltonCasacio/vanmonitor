@@ -68,7 +68,7 @@ export const MessageError = styled.Text`
 
 export const ContentFooter = styled.View`
   flex-direction: row;
-  height: 60px;
+  height: 50px;
 `
 
 export const ButtonWrapper = styled.View`

@@ -11,9 +11,8 @@ export const Container = styled.View`
 export const ContentBody = styled.View`
   flex: 1;
   justify-content: center;
+  margin-top: ${RFValue(50)}px;
 `
-
-export const ContentFooter = styled.View``
 
 export const InputWrapper = styled.View<InputWrapperProps>`
   ${({ hasError, theme }) => css`
@@ -21,4 +20,9 @@ export const InputWrapper = styled.View<InputWrapperProps>`
     border-bottom-color: ${hasError ? theme.COLORS.ATTENTION_LIGHT6 : "transparent"};
     border-bottom-width: 2px;
   `}
+`
+
+export const ContentFooter = styled.View`
+  margin-top: ${RFValue(10)}px;
+  height: 50px;
 `

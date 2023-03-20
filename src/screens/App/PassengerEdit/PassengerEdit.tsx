@@ -8,6 +8,7 @@ import { NavigationContext, RouteProp } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native'
 import { useAuth } from '@contexts/auth'
 import theme from '@styles/theme'
+import { ScrollView } from 'react-native-gesture-handler'
 
 interface PassengerProps {
   id: string
@@ -80,49 +81,51 @@ export const PassengerEdit: React.FC = () => {
       <Header comeBack />
 
       <S.ContentBody>
-        <S.InputWrapper hasError={errors.name}>
-          <Input
-            label='nome'
-            inputValue={passenger.name}
-            onChangeText={text => changePassenger("name", text)}
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-        </S.InputWrapper>
-        <S.InputWrapper hasError={false}>
-          <Input
-            label='apelido'
-            inputValue={passenger.nickname}
-            onChangeText={text => changePassenger("nickname", text)}
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-        </S.InputWrapper>
-        <S.InputWrapper hasError={errors.schoolName}>
-          <Input
-            label='escola'
-            inputValue={passenger.schoolName}
-            onChangeText={text => changePassenger("schoolName", text)}
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-        </S.InputWrapper>
-        <S.InputWrapper hasError={errors.routeCode}>
-          <Input
-            label='codigo da rota'
-            inputValue={passenger.routeCode}
-            onChangeText={text => changePassenger("routeCode", text)}
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-        </S.InputWrapper>
+        <ScrollView>
+          <S.InputWrapper hasError={errors.name}>
+            <Input
+              label='nome'
+              inputValue={passenger.name}
+              onChangeText={text => changePassenger("name", text)}
+              autoCapitalize='none'
+              autoCorrect={false}
+            />
+          </S.InputWrapper>
+          <S.InputWrapper hasError={false}>
+            <Input
+              label='apelido'
+              inputValue={passenger.nickname}
+              onChangeText={text => changePassenger("nickname", text)}
+              autoCapitalize='none'
+              autoCorrect={false}
+            />
+          </S.InputWrapper>
+          <S.InputWrapper hasError={errors.schoolName}>
+            <Input
+              label='escola'
+              inputValue={passenger.schoolName}
+              onChangeText={text => changePassenger("schoolName", text)}
+              autoCapitalize='none'
+              autoCorrect={false}
+            />
+          </S.InputWrapper>
+          <S.InputWrapper hasError={errors.routeCode}>
+            <Input
+              label='codigo da rota'
+              inputValue={passenger.routeCode}
+              onChangeText={text => changePassenger("routeCode", text)}
+              autoCapitalize='none'
+              autoCorrect={false}
+            />
+          </S.InputWrapper>
+        </ScrollView>
       </S.ContentBody>
 
       <S.ContentFooter>
         <Button
           title='excluir passageiro'
           onPress={handleDelete}
-          style={{ backgroundColor: theme.COLORS.ATTENTION, marginBottom: 10 }}
+          style={{ backgroundColor: theme.COLORS.ATTENTION, marginRight: 25 }}
         />
         <Button
           title='confirmar'

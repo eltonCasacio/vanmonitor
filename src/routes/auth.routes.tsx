@@ -18,9 +18,15 @@ export function AuthRoutes() {
         animation: 'slide_from_right',
       }}
     >
-      <Screen name="Login" component={Login} />
-      <Screen name="RegisterUser" component={RegisterUser} />
-      <Screen name="RegisterAddress" component={RegisterAddressUser} />
+      <Screen name="Login" component={Login}
+        options={{ headerShown: false }}
+      />
+      <Screen name="RegisterUser" component={RegisterUser}
+        options={{ title: "Dados do usuário" }}
+      />
+      <Screen name="RegisterAddress" component={RegisterAddressUser}
+        options={{ title: "Endereço" }}
+      />
     </Navigator>
   );
 }

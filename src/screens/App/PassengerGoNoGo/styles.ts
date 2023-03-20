@@ -10,7 +10,7 @@ export const Container = styled.View`
 export const Header = styled.View``
 
 export const Body = styled.View`
-  margin-bottom: ${RFValue(15)}px;
+  margin-top: ${RFValue(50)}px;
 `
 
 export const TitleWrapper = styled.View`
@@ -23,8 +23,6 @@ export const GoNoGoWrapper = styled.View`
   border-radius: 5px;
   margin-bottom: ${RFValue(5)}px;
 `
-
-export const Footer = styled.View``
 
 export const Observation = styled.TextInput`
   background-color: ${({ theme }) => theme.COLORS.WHITE_100};
@@ -45,4 +43,9 @@ export const MarketingIMG = styled.Image`
   width: 100%;
   height: 100px;
   margin-top: ${RFValue(10)}px;
+`
+
+export const Footer = styled.View`
+ margin-top: ${RFValue(10)}px;
+  height: 50px;
 `

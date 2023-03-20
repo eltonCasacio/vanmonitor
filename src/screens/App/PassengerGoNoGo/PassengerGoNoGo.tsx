@@ -57,7 +57,6 @@ export const PassengerGoNoGo: React.FC = () => {
       <S.Body>
         <S.TitleWrapper>
           <S.Subtitle>{passenger.schoolName} - {passenger.driverName}</S.Subtitle>
-          <FontAwesome5 name={'shipping-fast'} size={15} />
         </S.TitleWrapper>
 
         <S.GoNoGoWrapper>

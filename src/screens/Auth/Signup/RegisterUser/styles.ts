@@ -16,11 +16,6 @@ export const ContentBody = styled.View`
   justify-content: center;
 `
 
-export const ContentFooter = styled.View`
-  flex-direction: row;
-  height: 40px;
-`
-
 export const InputWrapper = styled.View<InputWrapperProps>`
   ${({ hasError, theme }) => css`
     margin: ${RFValue(10)}px 0;
@@ -31,4 +26,9 @@ export const InputWrapper = styled.View<InputWrapperProps>`
 
 export const Label = styled.Text`
   color: ${({theme}) => theme.COLORS.GREEN};
+`
+
+export const ContentFooter = styled.View`
+  flex-direction: row;
+  height: 50px;
 `

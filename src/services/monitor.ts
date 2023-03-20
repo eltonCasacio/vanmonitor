@@ -12,7 +12,7 @@ interface MonitorRegisterInput {
 }
 
 export async function Register(monitorData: MonitorRegisterInput): Promise<void> {
-  await API.post(`monitor/auth`, monitorData)
+  await API.post(`monitor`, monitorData)
 }
 
 export async function DeleteAccont(monitorID: string): Promise<void> {

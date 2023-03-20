@@ -5,6 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { Register } from '@services/monitor'
 import React, { useCallback, useState } from 'react'
 import { Alert } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import * as S from './styles'
 
 const Address = {
@@ -80,7 +81,9 @@ const RegisterAddressUser: React.FC = () => {
 
   return (
     <S.Container>
+
       <S.ContentBody>
+      <ScrollView>
         <S.InputWrapper>
           <S.StreetNumberWrapper>
             <S.Street>
@@ -154,7 +157,7 @@ const RegisterAddressUser: React.FC = () => {
             </S.WrapperError>
             <S.Complement>
               <Input
-                label='complemento'
+                label='obs'
                 inputValue={address.complement}
                 onChangeText={text => changeAddress('complement', text)}
                 autoCapitalize='none'
@@ -176,6 +179,7 @@ const RegisterAddressUser: React.FC = () => {
           </S.WrapperError>
         </S.InputWrapper>
 
+      </ScrollView>
       </S.ContentBody>
 
       <S.ContentFooter>

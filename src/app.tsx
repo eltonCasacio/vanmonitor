@@ -1,5 +1,4 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
 import theme from '@styles/theme'
 import { ThemeProvider } from 'styled-components/native'
 import { Routes } from '@routes/index'
@@ -11,10 +10,6 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <AuthProvider>
-          <StatusBar
-            barStyle={'dark-content'}
-            backgroundColor="transparent"
-          />
           <Routes />
         </AuthProvider>
       </NavigationContainer>
