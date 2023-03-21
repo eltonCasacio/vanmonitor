@@ -19,10 +19,7 @@ export interface ScreenEDIT {
 export interface ScreenMAP {
   id: string
   name: string
-  nickname: string
   routeCode: string
-  goes: boolean
-  comesback: boolean
   registerConfirmed: boolean
   schoolName: string
 }

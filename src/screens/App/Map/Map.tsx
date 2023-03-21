@@ -24,9 +24,11 @@ interface RegionProps extends Coords {
 }
 
 type MapProps = {
-  passengerName: any,
-  schoolName: any,
-  route: any
+  id: string
+  name: string
+  routeCode: string
+  registerConfirmed: boolean
+  schoolName: string
 }
 
 export const Map: React.FC = () => {
@@ -38,17 +40,21 @@ export const Map: React.FC = () => {
 
   const getCurrencyDriverPosition = () => {
     interval = setInterval(async () => {
-      let result = await getLocality(params?.route)
-      setDriverMerker({
-        latitude: Number(result.latitude),
-        longitude: Number(result.longitude),
-      })
+      try {
+        let result = await getLocality(params.routeCode)
+        setDriverMerker({
+          latitude: Number(result.latitude),
+          longitude: Number(result.longitude),
+        })
+      } catch (error) {
+        console.error(error)
+      }
+
     }, 3000);
     return () => clearInterval(interval)
   }
 
   useEffect(() => {
-    console.debug('PARAMENTROS::', params)
     getCurrencyDriverPosition()
 
     Geolocation.getCurrentPosition(info => {
@@ -112,9 +118,9 @@ export const Map: React.FC = () => {
       </S.Map>
 
       <S.Footer>
-        <Text>Chega em {distance}</Text>
-        <Text>ALUNO: {params?.passengerName}</Text>
-        <Text>ESCOLA: {params?.schoolName}</Text>
+        <Text style={{ color: 'black' }}>Chega em {distance}</Text>
+        <Text style={{ color: 'black' }}>ALUNO: {params.name}</Text>
+        <Text style={{ color: 'black' }}>ESCOLA: {params.schoolName}</Text>
       </S.Footer>
     </S.Container>
   )

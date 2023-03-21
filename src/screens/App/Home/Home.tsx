@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native'
 import { GetPassengers, PassengerResponse } from '@services/home'
 import { GetDriverByRouteCode } from '@services/home'
 import { useAuth } from 'contexts/auth'
+import theme from '@styles/theme'
 
 interface PassengerInfo {
   id: string
@@ -30,7 +31,13 @@ export const Home: React.FC = () => {
   const [data, setData] = useState<PassengerInfo[]>([])
 
   const handleGoToMap = (params: PassengerResponse) => {
-    navigate('Map', params)
+    navigate('Map', {
+      id: params.id,
+      name: params.name,
+      schoolName: params.schoolName,
+      routeCode: params.routeCode,
+      registerConfirmed: params.registerConfirmed
+    })
   }
 
   const handleInformation = (params: PassengerResponse) => {
@@ -42,7 +49,6 @@ export const Home: React.FC = () => {
   }
 
   const handleEdit = (params: PassengerInfo) => {
-    // setParams(params)
     navigate('PassengerEdit', params)
   }
 
@@ -83,7 +89,7 @@ export const Home: React.FC = () => {
         <S.ContentHeader>
           <S.ContentTitle>Passageiros</S.ContentTitle>
           <S.PlusIcon onPress={handlePassengerRegister}>
-            <Feather name='plus' size={22} />
+            <Feather name='plus' size={22} color={theme.COLORS.GREEN}/>
           </S.PlusIcon>
         </S.ContentHeader>
 

@@ -23,6 +23,7 @@ export const Title = styled.Text`
     text-align: center;
     font-size: ${RFValue(20)}px;
     font-family: ${theme.FONTS.PoppinsMediumItalic};
+    color: ${theme.COLORS.GREEN};
     margin-top: ${RFValue(50)}px;
   `}
 `
