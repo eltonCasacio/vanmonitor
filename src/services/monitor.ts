@@ -9,6 +9,7 @@ interface MonitorRegisterInput {
   street: string
   number: string
   cep: string
+  complement: string
 }
 
 export async function Register(monitorData: MonitorRegisterInput): Promise<void> {

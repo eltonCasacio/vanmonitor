@@ -53,7 +53,8 @@ const RegisterAddressUser: React.FC = () => {
         uf: address.uf,
         name: params.name,
         cpf: params.cpf,
-        phone_number: params.phone
+        phone_number: params.phone,
+        complement: address.complement
       })
         .then(() => navigate("Login"))
         .catch((err) => Alert.alert("Erro inesperado, tente mais tarde ou entre em contato com administrador", err))

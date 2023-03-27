@@ -48,7 +48,7 @@ export const Login: React.FC = () => {
           autoCorrect={false}
         />
         <S.CreateAccountWrapper onPress={handleSigup}>
-          <S.CreateAccountText>Não tem cadastro ainda?</S.CreateAccountText>
+          <S.CreateAccountText>Ainda não possui cadastro?</S.CreateAccountText>
           <S.CreateAccountTextBold>Cadastre-se</S.CreateAccountTextBold>
         </S.CreateAccountWrapper>
       </S.ContentBody>
