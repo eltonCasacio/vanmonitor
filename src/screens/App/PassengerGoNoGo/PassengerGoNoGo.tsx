@@ -73,8 +73,6 @@ export const PassengerGoNoGo: React.FC = () => {
             handleTaggle={(value) => changeGoNoGo('comesback', value)}
           />
         </S.GoNoGoWrapper>
-
-        <S.Observation placeholder='Observação' multiline maxLength={150} numberOfLines={4} />
       </S.Body>
 
       <S.Footer>

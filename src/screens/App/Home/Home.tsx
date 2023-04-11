@@ -13,125 +13,127 @@ import { useAuth } from 'contexts/auth'
 import theme from '@styles/theme'
 
 interface PassengerInfo {
-  id: string
-  name: string
-  nickname: string
-  routeCode: string
-  goes: boolean
-  comesback: boolean
-  registerConfirmed: boolean
-  schoolName: string
-  driverName: string
+    id: string
+    name: string
+    nickname: string
+    routeCode: string
+    goes: boolean
+    comesback: boolean
+    registerConfirmed: boolean
+    schoolName: string
+    driverName: string
 }
 
 export const Home: React.FC = () => {
-  const { user } = useAuth()
-  const {navigate, addListener, isFocused} = useNavigation()
-  const [data, setData] = useState<PassengerInfo[]>([])
+    const { user } = useAuth()
+    const { navigate, addListener, isFocused } = useNavigation()
+    const [data, setData] = useState<PassengerInfo[]>([])
 
-  const handleGoToMap = (params: PassengerResponse) => {
-    navigate('Map', {
-      id: params.id,
-      name: params.name,
-      schoolName: params.schoolName,
-      routeCode: params.routeCode,
-      registerConfirmed: params.registerConfirmed
-    })
-  }
+    const handleGoToMap = (params: PassengerResponse) => {
+        if (params.registerConfirmed) {
+            navigate('Map', {
+                id: params.id,
+                name: params.name,
+                schoolName: params.schoolName,
+                routeCode: params.routeCode,
+                registerConfirmed: params.registerConfirmed
+            })
+        }
+    }
 
-  const handleInformation = (params: PassengerResponse) => {
-    navigate('PassengerGoNoGo', params)
-  }
+    const handleInformation = (params: PassengerResponse) => {
+        navigate('PassengerGoNoGo', params)
+    }
 
-  const handlePassengerRegister = () => {
-    navigate('PassengerRegister')
-  }
+    const handlePassengerRegister = () => {
+        navigate('PassengerRegister')
+    }
 
-  const handleEdit = (params: PassengerInfo) => {
-    navigate('PassengerEdit', params)
-  }
+    const handleEdit = (params: PassengerInfo) => {
+        navigate('PassengerEdit', params)
+    }
 
-  const loadData = () => {
-    setData([])
-    GetPassengers(user?.ID).then(passengers => {
-      passengers && passengers.map(passenger => {
-        GetDriverByRouteCode(passenger.routeCode).then(driver => {
-          setData(prevValue => [...prevValue, {
-            id: passenger.id,
-            name: passenger.name,
-            nickname: passenger.nickname,
-            routeCode: passenger.routeCode,
-            goes: passenger.goes,
-            comesback: passenger.comesback,
-            registerConfirmed: passenger.registerConfirmed,
-            schoolName: passenger.schoolName,
-            driverName: driver.name,
-          }])
+    const loadData = () => {
+        setData([])
+        GetPassengers(user?.ID).then(passengers => {
+            passengers && passengers.map(passenger => {
+                GetDriverByRouteCode(passenger.routeCode).then(driver => {
+                    setData(prevValue => [...prevValue, {
+                        id: passenger.id,
+                        name: passenger.name,
+                        nickname: passenger.nickname,
+                        routeCode: passenger.routeCode,
+                        goes: passenger.goes,
+                        comesback: passenger.comesback,
+                        registerConfirmed: passenger.registerConfirmed,
+                        schoolName: passenger.schoolName,
+                        driverName: driver.name,
+                    }])
+                })
+            })
         })
-      })
-    })
-  }
+    }
 
-  React.useEffect(() => {
-    const unsubscribe = addListener('state', () => {
-      loadData()
-    });
+    React.useEffect(() => {
+        const unsubscribe = addListener('state', () => {
+            loadData()
+        });
 
-    return unsubscribe;
-  }, [isFocused]);
+        return unsubscribe;
+    }, [isFocused]);
 
 
-  return (
-    <S.Container>
-      <Header />
-      <S.Content>
-        <S.ContentHeader>
-          <S.ContentTitle>Passageiros</S.ContentTitle>
-          <S.PlusIcon onPress={handlePassengerRegister}>
-            <Feather name='plus' size={22} color={theme.COLORS.GREEN}/>
-          </S.PlusIcon>
-        </S.ContentHeader>
+    return (
+        <S.Container>
+            <Header />
+            <S.Content>
+                <S.ContentHeader>
+                    <S.ContentTitle>Passageiros</S.ContentTitle>
+                    <S.PlusIcon onPress={handlePassengerRegister}>
+                        <Feather name='plus' size={22} color={theme.COLORS.GREEN} />
+                    </S.PlusIcon>
+                </S.ContentHeader>
 
-        <FlatList
-          data={data}
-          renderItem={({ item }) => (
-            <PassengerCard
-              passengerName={item.name}
-              schoolName={item.schoolName}
-              driverName={item.driverName}
-              handleInformation={() => handleInformation(item)}
-              handleGoToMap={() => handleGoToMap(item)}
-              handleEdit={() => handleEdit(item)}
-            />
-          )}
-          scrollEnabled
-        />
-      </S.Content>
+                <FlatList
+                    data={data}
+                    renderItem={({ item }) => (
+                        <PassengerCard
+                            passengerName={item.name}
+                            schoolName={item.schoolName}
+                            driverName={item.driverName}
+                            handleInformation={() => handleInformation(item)}
+                            handleGoToMap={() => handleGoToMap(item)}
+                            handleEdit={() => handleEdit(item)}
+                        />
+                    )}
+                    scrollEnabled
+                />
+            </S.Content>
 
-      <S.Partners>
-        <PartnersCard
-          source={Partners[0].source}
-          title={Partners[0].title}
-        />
+            <S.Partners>
+                <PartnersCard
+                    source={Partners[0].source}
+                    title={Partners[0].title}
+                />
 
-        <PartnersCard
-          source={Partners[1].source}
-          title={Partners[1].title}
-        />
+                <PartnersCard
+                    source={Partners[1].source}
+                    title={Partners[1].title}
+                />
 
-        <PartnersCard
-          source={Partners[2].source}
-          title={Partners[2].title}
-        />
-      </S.Partners>
+                <PartnersCard
+                    source={Partners[2].source}
+                    title={Partners[2].title}
+                />
+            </S.Partners>
 
 
-      <S.Footer>
-        <S.MarketingWrapper>
-          <S.MarketingIMG source={MarketingIMG} />
-          <S.MarketingIMG source={MarketingIMG} />
-        </S.MarketingWrapper>
-      </S.Footer>
-    </S.Container>
-  )
+            <S.Footer>
+                <S.MarketingWrapper>
+                    <S.MarketingIMG source={MarketingIMG} />
+                    <S.MarketingIMG source={MarketingIMG} />
+                </S.MarketingWrapper>
+            </S.Footer>
+        </S.Container>
+    )
 }

@@ -1,21 +1,22 @@
 import styled, { css } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Dimensions } from 'react-native'
 
 interface InputWrapperError { hasError: boolean }
-
-var screenSize = Dimensions.get('screen').width
 
 export const Container = styled.View`
   flex: 1;
   justify-content: space-between;
   padding: ${RFValue(15)}px;
-  padding-top: ${RFValue(50)}px;
+  padding-top: ${RFValue(30)}px;
 `
 export const ContentBody = styled.View`
   flex: 1;
   margin-top: ${RFValue(50)}px;
 `
+
+export const CEP = styled.View``
+
+
 export const InputWrapper = styled.View`
   margin: ${RFValue(10)}px 0;
 `
@@ -33,10 +34,7 @@ export const CEPComplementWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `
-export const CEP = styled.View`
-  width: ${RFValue((screenSize / 2) - 60)}px;
-  margin-right: 5px;
-`
+
 export const Complement = styled.View`
   flex: 1;
 `

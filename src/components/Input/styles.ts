@@ -19,7 +19,8 @@ export const Label = styled.View`
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 70px;
+  min-width: 60px;
+  padding: 0 5px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: ${({theme}) => theme.COLORS.GREEN};
