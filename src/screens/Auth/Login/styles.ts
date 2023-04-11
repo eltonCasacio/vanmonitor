@@ -1,21 +1,21 @@
 import styled, { css } from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-export const Container = styled.View`
-  flex: 1;
-  justify-content: space-around;
-  padding: ${RFValue(20)}px ${RFValue(20)}px;
+export const Container = styled.ImageBackground`
+    flex: 1;
+    justify-content: space-around;
+    padding: 0 ${RFValue(20)}px;
 `
 
 export const ContentHeader = styled.View`
-  align-items: center;
-  padding: ${RFValue(10)}px;
+    align-items: center;
+    padding: ${RFValue(10)}px;
 `
 
 export const ContentBody = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+    flex: 0.8;
+    justify-content: flex-end;
+    align-items: center;
 `
 
 export const Title = styled.Text`
@@ -37,10 +37,10 @@ export const Description = styled.Text`
 `
 
 export const CreateAccountWrapper = styled.TouchableOpacity`
-  align-items: center;
-  flex-direction: row;
-  justify-content:  center;
-  margin: ${RFValue(5)}px 0;
+    align-items: center;
+    flex-direction: row;
+    justify-content:  center;
+    margin: ${RFValue(5)}px 0;
 `
 
 export const CreateAccountText = styled.Text`
@@ -68,10 +68,10 @@ export const MessageError = styled.Text`
 `
 
 export const ContentFooter = styled.View`
-  flex-direction: row;
-  height: 50px;
+    flex-direction: row;
+    height: 50px;
 `
 
 export const ButtonWrapper = styled.View`
-  flex: 1;
+    flex: 1;
 `

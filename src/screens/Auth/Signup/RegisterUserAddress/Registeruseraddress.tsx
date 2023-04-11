@@ -9,6 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import * as S from './styles'
 import axios from 'axios'
 import Geolocation from '@react-native-community/geolocation'
+import Icon from '@assets/images/sm-icon.png'
 
 interface ViaCEP {
     cep: string
@@ -225,7 +226,9 @@ const RegisterAddressUser: React.FC = () => {
 
                 </ScrollView>
             </S.ContentBody>
-
+            <S.IMGWrapper>
+                <S.IMG source={Icon} />
+            </S.IMGWrapper>
             <S.ContentFooter>
                 <Button
                     title='confirmar'

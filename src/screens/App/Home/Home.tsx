@@ -109,31 +109,7 @@ export const Home: React.FC = () => {
                     scrollEnabled
                 />
             </S.Content>
-
-            <S.Partners>
-                <PartnersCard
-                    source={Partners[0].source}
-                    title={Partners[0].title}
-                />
-
-                <PartnersCard
-                    source={Partners[1].source}
-                    title={Partners[1].title}
-                />
-
-                <PartnersCard
-                    source={Partners[2].source}
-                    title={Partners[2].title}
-                />
-            </S.Partners>
-
-
-            <S.Footer>
-                <S.MarketingWrapper>
-                    <S.MarketingIMG source={MarketingIMG} />
-                    <S.MarketingIMG source={MarketingIMG} />
-                </S.MarketingWrapper>
-            </S.Footer>
+            <S.Footer></S.Footer>
         </S.Container>
     )
 }

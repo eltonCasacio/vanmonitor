@@ -5,6 +5,7 @@ import { Button } from '@components/Button'
 import { useAuth } from 'contexts/auth'
 import { FormatCPF } from '@utils/Auth/convertToOnlyNumbers'
 import { useNavigation } from '@react-navigation/native'
+import Icon from '@assets/images/bg-icon.png'
 
 export const Login: React.FC = () => {
   const { navigate } = useNavigation()
@@ -33,10 +34,7 @@ export const Login: React.FC = () => {
   }, [cpf])
 
   return (
-    <S.Container>
-      <S.ContentHeader>
-        <S.Title>Seja bem vindo(a) a Horus</S.Title>
-      </S.ContentHeader>
+    <S.Container source={Icon} resizeMode='contain'>
       <S.ContentBody>
         <S.MessageError>{hasError && "CPF invalido"}</S.MessageError>
         <InputMask

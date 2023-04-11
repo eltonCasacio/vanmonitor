@@ -52,3 +52,11 @@ export const ContentFooter = styled.View`
   margin-top: ${RFValue(10)}px;
   height: 50px;
 `
+export const IMGWrapper = styled.View`
+    position: absolute;
+    bottom: 100px;
+    left: 33%;
+    z-index: -10;
+`
+
+export const IMG = styled.Image``

@@ -5,15 +5,14 @@ interface InputWrapperProps { hasError: boolean }
 
 
 export const Container = styled.View`
-  height: 100%;
-  justify-content: center;
-  padding: ${RFValue(20)}px;
-  padding-top: ${RFValue(50)}px;
+    flex: 1;
+    padding: ${RFValue(20)}px;
+    padding-top: ${RFValue(40)}px;
 `
 
 export const ContentBody = styled.View`
-  flex: 1;
-  justify-content: center;
+    flex: 0.5;
+    justify-content: flex-end;
 `
 
 export const InputWrapper = styled.View<InputWrapperProps>`
@@ -25,10 +24,27 @@ export const InputWrapper = styled.View<InputWrapperProps>`
 `
 
 export const Label = styled.Text`
-  color: ${({theme}) => theme.COLORS.GREEN};
+    color: ${({theme}) => theme.COLORS.GREEN};
 `
 
-export const ContentFooter = styled.View`
-  flex-direction: row;
-  height: 50px;
+export const IMGWrapper = styled.View`
+    position: absolute;
+    bottom: 100px;
+    left: 33%;
 `
+
+export const IMG = styled.Image``
+
+export const ContentFooter = styled.View`
+    flex: 0.5;
+    flex-direction: row;
+    justify-content: center;
+`
+
+export const Button = styled.View`
+    flex: 1;
+    align-self: flex-end;
+    height: 60px;
+`
+
+
