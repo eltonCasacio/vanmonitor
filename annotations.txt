@@ -1,0 +1,22 @@
+# ID
+br.com.eltoncasacio.horus.monitor_test
+
+# NOME
+Horus
+
+
+command raname
+npx react-native-rename "Horus" -b "br.com.eltoncasacio.monitor"
+
+
+
+************************* GERANDO APK *************************
+
+LINK DA DOCUMENTACAO
+https://reactnative.dev/docs/signed-apk-android
+
+COMANDO PARA GERAR KEY TOOL
+sudo keytool -genkey -v -keystore horusdriver.keystore -alias horusdriver -keyalg RSA -keysize 2048 -validity 10000
+
+
+npx react-native run-android --mode=release
