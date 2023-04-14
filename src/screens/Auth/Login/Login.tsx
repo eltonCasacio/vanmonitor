@@ -6,6 +6,7 @@ import { useAuth } from 'contexts/auth'
 import { FormatCPF } from '@utils/Auth/convertToOnlyNumbers'
 import { useNavigation } from '@react-navigation/native'
 import Icon from '@assets/images/bg-icon.png'
+import { GetDeviceToken } from '@services/home'
 
 export const Login: React.FC = () => {
   const { navigate } = useNavigation()
@@ -18,6 +19,7 @@ export const Login: React.FC = () => {
   const handleSigup = () => navigate('RegisterUser')
 
   const handleSignin = () => {
+    GetDeviceToken()
     if (cpf.length == 11) {
       signin(cpf)
         .then(() => setHasError("cpf invalido"))
