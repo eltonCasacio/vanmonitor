@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import * as S from './styles'
+import { FlatList } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import Feather from 'react-native-vector-icons/Feather'
+import { useAuth } from 'contexts/auth'
 import { Header } from '@components/Header'
 import { PassengerCard } from '@components/PassengerCard'
-import { PartnersCard } from '@components/PartnersCard'
-import { Partners } from '@utils/images/partners'
-import { FlatList } from 'react-native'
-import Feather from 'react-native-vector-icons/Feather'
-import MarketingIMG from '@assets/images/mkt.png'
-import { useNavigation } from '@react-navigation/native'
+import { GetDeviceToken } from '@services/home'
 import { GetPassengers, PassengerResponse, GetDriverByRouteCode } from '@services/home'
-import { useAuth } from 'contexts/auth'
+import * as S from './styles'
 import theme from '@styles/theme'
 
 interface PassengerInfo {
@@ -77,6 +75,8 @@ export const Home: React.FC = () => {
     React.useEffect(() => {
         const unsubscribe = addListener('state', () => {
             loadData()
+    GetDeviceToken()
+
         });
 
         return unsubscribe;

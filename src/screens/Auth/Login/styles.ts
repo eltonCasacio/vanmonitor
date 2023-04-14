@@ -13,7 +13,7 @@ export const ContentHeader = styled.View`
 `
 
 export const ContentBody = styled.View`
-    flex: 0.8;
+    flex: 0.85;
     justify-content: flex-end;
     align-items: center;
 `

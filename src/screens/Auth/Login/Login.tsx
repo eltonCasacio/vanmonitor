@@ -12,7 +12,6 @@ export const Login: React.FC = () => {
   const { signin } = useAuth()
   const [cpf, setCPF] = useState("")
   const [hasError, setHasError] = useState("")
-
   const [buttonDisable, setButtonDisable] = useState(true)
 
   const handleSigup = () => navigate('RegisterUser')
@@ -36,7 +35,6 @@ export const Login: React.FC = () => {
   return (
     <S.Container source={Icon} resizeMode='contain'>
       <S.ContentBody>
-        <S.MessageError>{hasError && "CPF invalido"}</S.MessageError>
         <InputMask
           label='cpf'
           inputType='cpf'
@@ -45,6 +43,7 @@ export const Login: React.FC = () => {
           autoCapitalize='none'
           autoCorrect={false}
         />
+        <S.MessageError>{hasError && "CPF invalido"}</S.MessageError>
         <S.CreateAccountWrapper onPress={handleSigup}>
           <S.CreateAccountText>Ainda não possui cadastro?</S.CreateAccountText>
           <S.CreateAccountTextBold>Cadastre-se</S.CreateAccountTextBold>
