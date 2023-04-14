@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import Feather from 'react-native-vector-icons/Feather'
@@ -72,16 +72,13 @@ export const Home: React.FC = () => {
         })
     }
 
-    React.useEffect(() => {
-        const unsubscribe = addListener('state', () => {
-            loadData()
-    GetDeviceToken()
-
-        });
-
+    useEffect(() => {
+        const unsubscribe = addListener('state', () => loadData());
         return unsubscribe;
     }, [isFocused]);
 
+
+    useEffect(() => { GetDeviceToken(user?.ID!) }, [user])
 
     return (
         <S.Container>

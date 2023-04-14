@@ -44,10 +44,11 @@ export async function GetDriverByRouteCode(routeCode = ''): Promise<DriverRespon
     }
 }
 
-export async function GetDeviceToken(): Promise<void> {
+export async function GetDeviceToken(monitorID: string): Promise<void> {
     try {
         messaging().getToken().then((token) => {
-            console.debug("TOKEN DEVICE", token)
+            const data = { monitorID, token }
+            API.post("device", data)
         })
     } catch (error) {
         throw new Error("get driver by route code error")
