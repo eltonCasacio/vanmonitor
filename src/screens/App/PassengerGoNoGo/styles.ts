@@ -10,6 +10,7 @@ export const Container = styled.View`
 export const Header = styled.View``
 
 export const Body = styled.View`
+  flex: 1;
   margin-top: ${RFValue(50)}px;
 `
 
@@ -18,16 +19,12 @@ export const TitleWrapper = styled.View`
 `
 
 export const GoNoGoWrapper = styled.View`
-  padding: ${RFValue(5)}px;
-  background-color: ${({theme}) => theme.COLORS.WHITE_100};
   border-radius: 5px;
   margin-bottom: ${RFValue(5)}px;
-`
+  `
 
-export const Observation = styled.TextInput`
-  background-color: ${({ theme }) => theme.COLORS.WHITE_100};
-  border-radius:${RFValue(10)}px;
-  padding: ${RFValue(10)}px ${RFValue(30)}px;
+export const GoNoGoItem = styled.View`
+    margin: 10px 0;
 `
 
 export const Subtitle = styled.Text`
@@ -36,16 +33,4 @@ export const Subtitle = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY3};
   text-transform: uppercase;
   padding: 0 5px;
-`
-
-export const MarketingWrapper = styled.TouchableOpacity``
-export const MarketingIMG = styled.Image`
-  width: 100%;
-  height: 100px;
-  margin-top: ${RFValue(10)}px;
-`
-
-export const Footer = styled.View`
- margin-top: ${RFValue(10)}px;
-  height: 50px;
 `

@@ -34,7 +34,7 @@ export const PopupConfirmation: React.FC<PopupProps> = ({
               <Button
                 title='Confirmar'
                 onPress={confirm}
-                style={{ backgroundColor: theme.COLORS.GREEN1 }}
+                style={{ backgroundColor: theme.COLORS.GREEN }}
               />
             </S.Button>
 

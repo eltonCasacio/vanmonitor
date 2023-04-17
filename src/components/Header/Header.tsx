@@ -30,11 +30,11 @@ export const Header: React.FC<HeaderProps> = ({ comeBack }) => {
       iconName: 'user',
       action: () => navigation?.navigate("PassengerRegister")
     },
-    {
-      title: 'parceiros',
-      iconName: 'users',
-      action: () => navigation?.navigate("Home")
-    },
+    // {
+    //   title: 'parceiros',
+    //   iconName: 'users',
+    //   action: () => navigation?.navigate("Home")
+    // },
     {
       title: 'sair',
       iconName: 'log-out',

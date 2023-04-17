@@ -1,91 +1,82 @@
-import React, { useState } from 'react'
-import { NavigationContext, RouteProp, useRoute } from '@react-navigation/native'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import MarketingIMG from '@assets/images/mkt.png'
-import { useAuth } from '@contexts/auth'
-import {Edit} from '@services/passenger'
+import React from 'react'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { Header } from '@components/Header'
 import { GoNoGoCard } from '@components/GoNoGoCard'
-import { Button } from '@components/Button'
+import { Edit } from '@services/passenger'
 import * as S from './styles'
+import { PassengerResponse } from '@services/home'
+import { useAuth } from '@contexts/auth'
+import { Text } from 'react-native'
 
-type CustomRoute = RouteProp<any, any>
-interface PassengerProps {
-  id: string
-  name: string
-  nickname: string
-  routeCode: string
-  schoolName: string
-  goes: boolean
-  comesback: boolean
-  registerConfirmed: boolean
-  monitorID: string
-  driverName: string
-}
+type GONOGOPARAMS = 'AUSENTE' | 'NAO VAI' | 'NAO VOLTA'
 
 export const PassengerGoNoGo: React.FC = () => {
-  const navigation = React.useContext(NavigationContext)
-  const { params } = useRoute<CustomRoute>()
-  const { user } = useAuth()
-  const [passenger, setPassenger] = useState<PassengerProps>({
-    id: params?.id,
-    name: params?.name,
-    nickname: params?.nickname,
-    routeCode: params?.routeCode,
-    schoolName: params?.schoolName,
-    goes: params?.goes,
-    comesback: params?.comesback,
-    registerConfirmed: params?.registerConfirmed,
-    monitorID: user?.ID!,
-    driverName: params?.driverName
-  })
+    const { navigate } = useNavigation()
+    const passenger = useRoute().params as PassengerResponse
+    const { user } = useAuth()
 
-  const changeGoNoGo = async (k: string, v: boolean) => {
-    setPassenger({ ...passenger, [k]: v })
-  }
+    const handleConfirm = (props: GONOGOPARAMS) => {
+        if (props == 'AUSENTE') {
+            passenger.comesback = !passenger.comesback
+            passenger.goes = !passenger.goes
+        }
 
-  const handleConfirm = async () => {
-    Edit(passenger).then(() => navigation?.goBack())
-  }
+        if (props == 'NAO VAI') {
+            passenger.goes = !passenger.goes
+        } else {
+            passenger.comesback = !passenger.comesback
+        }
 
-  return (
-    <S.Container>
-      <S.Header>
-        <Header comeBack />
-      </S.Header>
+        Edit({
+            id: passenger.id,
+            comesback: passenger.comesback,
+            goes: passenger.goes,
+            monitorID: user?.ID!,
+            name: passenger.name,
+            nickname: passenger.nickname,
+            registerConfirmed: passenger.registerConfirmed,
+            routeCode: passenger.routeCode,
+            schoolName: passenger.schoolName
+        }).then(() => navigate('Home'))
+    }
 
-      <S.Body>
-        <S.TitleWrapper>
-          <S.Subtitle>{passenger.schoolName} - {passenger.driverName}</S.Subtitle>
-        </S.TitleWrapper>
+    return (
+        <S.Container>
+            <S.Header>
+                <Header comeBack />
+            </S.Header>
 
-        <S.GoNoGoWrapper>
-          <GoNoGoCard
-            title='vai com a Van'
-            name={passenger.name}
-            status={passenger.goes}
-            handleTaggle={(value) => changeGoNoGo('goes', value)}
-          />
-          <GoNoGoCard
-            title='volta com a Van'
-            name={passenger.name}
-            status={passenger.comesback}
-            handleTaggle={(value) => changeGoNoGo('comesback', value)}
-          />
-        </S.GoNoGoWrapper>
-      </S.Body>
+            <S.Body>
+                <S.TitleWrapper>
+                    <S.Subtitle>{passenger?.schoolName}</S.Subtitle>
+                </S.TitleWrapper>
 
-      <S.Footer>
-        <Button
-          title='confirmar'
-          onPress={handleConfirm}
-        />
-      </S.Footer>
+                <S.GoNoGoWrapper>
+                    <S.GoNoGoItem>
+                        <GoNoGoCard
+                            goes={'NAO VAI'}
+                            title='Não vai de transporte'
+                            name={passenger?.name}
+                            callback={handleConfirm}
+                            statusGoNoGo={passenger.goes}
+                        />
+                    </S.GoNoGoItem>
 
-      <S.MarketingWrapper>
-        <S.MarketingIMG source={MarketingIMG} />
-        <S.MarketingIMG source={MarketingIMG} />
-      </S.MarketingWrapper>
-    </S.Container>
-  )
+                    <S.GoNoGoItem>
+                        <GoNoGoCard
+                            goes={'NAO VOLTA'}
+                            title='não volta de transporte'
+                            name={passenger?.name}
+                            callback={handleConfirm}
+                            statusGoNoGo={passenger.comesback}
+                        />
+                    </S.GoNoGoItem>
+                </S.GoNoGoWrapper>
+
+                <Text style={{fontWeight:'bold'}}>Informação atual da viagem de {passenger?.name}</Text>
+                <Text>{passenger.goes ? "Vai" : "Não vai"} de transporte</Text>
+                <Text>{passenger.comesback ? "Volta" : "Não volta"} de transporte</Text>
+            </S.Body>
+        </S.Container>
+    )
 }

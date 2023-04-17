@@ -41,6 +41,7 @@ export const PassengerRegister: React.FC = () => {
   }
 
   const handleConfirm = async () => {
+    console.debug("TA OSSO::", validate())
     if (validate()) {
       Register(passenger)
         .then(() => navigation?.goBack())
