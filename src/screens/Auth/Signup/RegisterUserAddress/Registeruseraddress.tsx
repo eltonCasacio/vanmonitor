@@ -8,7 +8,6 @@ import { Alert } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import * as S from './styles'
 import axios from 'axios'
-import Geolocation from '@react-native-community/geolocation'
 import Icon from '@assets/images/sm-icon.png'
 
 interface ViaCEP {
@@ -72,21 +71,16 @@ const RegisterAddressUser: React.FC = () => {
                 complement: data.complemento,
                 neighbor: data.bairro,
                 street: data.logradouro,
-                uf: data.uf
+                uf: data.uf,
+                latitude: 0,
+                longitude: 0
             })
         } catch (error) {
 
         }
     }, [address])
 
-    const getCurrentPosition = () => {
-        Geolocation.getCurrentPosition(info => {
-            setAddress({ ...address, latitude: info.coords.latitude, longitude: info.coords.longitude })
-        })
-    }
-
     const handleSubmit = async () => {
-        getCurrentPosition()
         if (await validate()) {
             Register({
                 cep: address.cep,
