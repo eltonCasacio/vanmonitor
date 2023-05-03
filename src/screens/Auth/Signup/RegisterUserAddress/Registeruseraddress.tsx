@@ -10,6 +10,25 @@ import * as S from './styles'
 import axios from 'axios'
 import Icon from '@assets/images/sm-icon.png'
 
+interface AdressInterface {
+    results: [
+        {
+            address_components: [
+                {
+                   long_name : string,
+                   short_name : string
+                }
+            ],
+            geometry: {
+                location: {
+                    "lat": -22.9964977,
+                    "lng": -47.0010515
+                },
+            },
+        }
+    ],
+    status: "OK"
+}
 interface ViaCEP {
     cep: string
     logradouro: string
@@ -61,23 +80,27 @@ const RegisterAddressUser: React.FC = () => {
 
     const changeCEP = useCallback(async () => {
         const res = address.cep.replace(".", "").replace("-", "")
-        const url = `http://viacep.com.br/ws/${res}/json/`
+        const urlGeocode = `https://maps.googleapis.com/maps/api/geocode/json?address=${res}&key=AIzaSyDyULsOfXU6cxYW13dOaLpGu-POI6l1nDE`
         try {
-            const { data } = await axios.get<ViaCEP>(url)
-            setAddress({
-                ...address,
-                cep: address.cep,
-                city: data.localidade,
-                complement: data.complemento,
-                neighbor: data.bairro,
-                street: data.logradouro,
-                uf: data.uf,
-                latitude: 0,
-                longitude: 0
-            })
-        } catch (error) {
+            const {data} = await axios.get<AdressInterface>(urlGeocode)
 
-        }
+            if(data.status == "OK"){
+                var rows: { long_name: string; short_name: string }[] = []
+                data.results[0].address_components.forEach(item => rows.push(item))
+
+                setAddress({
+                    ...address,
+                    cep: address.cep,
+                    city: rows[3].long_name,
+                    complement: "",
+                    neighbor: rows[2].long_name,
+                    street: rows[1].long_name,
+                    uf: rows[4].short_name,
+                    latitude: data.results[0].geometry.location.lat,
+                    longitude: data.results[0].geometry.location.lng
+                })
+            }
+        } catch (error) {}
     }, [address])
 
     const handleSubmit = async () => {
