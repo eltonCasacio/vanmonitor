@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1013337085152",
-    "project_id": "horus-7f463",
-    "storage_bucket": "horus-7f463.appspot.com"
+    "project_number": "978241044556",
+    "project_id": "horus-b9211",
+    "storage_bucket": "horus-b9211.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1013337085152:android:15f5f43e948b833e9fec85",
+        "mobilesdk_app_id": "1:978241044556:android:33f9954f816103181034e9",
         "android_client_info": {
           "package_name": "br.com.eltoncasacio.monitor"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1013337085152-i6h659rrsoivd9a7giq17apf2v3p7s1l.apps.googleusercontent.com",
+          "client_id": "978241044556-r352up55ks1i9uaeu196sd2sff8vp8g7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBhtMgv3RNtPkelqqVCTLyJIuFdFhuAA4c"
+          "current_key": "AIzaSyB7V4IMio-pE7rBUBp-LmxdZ10Uh1vBoTY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1013337085152-i6h659rrsoivd9a7giq17apf2v3p7s1l.apps.googleusercontent.com",
+              "client_id": "978241044556-r352up55ks1i9uaeu196sd2sff8vp8g7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

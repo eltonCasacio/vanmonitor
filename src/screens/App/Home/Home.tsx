@@ -77,7 +77,6 @@ export const Home: React.FC = () => {
         return unsubscribe;
     }, [isFocused]);
 
-
     useEffect(() => { GetDeviceToken(user?.ID!) }, [user])
 
     return (
