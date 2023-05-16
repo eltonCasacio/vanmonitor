@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "sudo npx react-native run-android",
+    "android_release": "sudo npx react-native run-android --mode=release",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "npx react-native start",
