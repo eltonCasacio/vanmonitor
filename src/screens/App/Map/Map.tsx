@@ -7,12 +7,12 @@ import * as S from './styles'
 import Theme from '@styles/theme'
 
 import { Config } from '@config/conf'
-import Geolocation from '@react-native-community/geolocation'
 import MapViewDirections from 'react-native-maps-directions'
 import { Marker } from 'react-native-maps'
 import { getLocality } from '@services/map'
 import { useRoute } from '@react-navigation/native'
-
+import { GetMonitorByID } from '@services/monitor'
+import { useAuth } from '@contexts/auth'
 interface Coords {
     latitude: number
     longitude: number
@@ -32,6 +32,7 @@ type MapProps = {
 }
 
 export const Map: React.FC = () => {
+    const { user } = useAuth()
     const params = useRoute().params as MapProps
     const [monitorMerker, setMonitorMerker] = React.useState<RegionProps>()
     const [driverMerker, setDriverMerker] = React.useState<Coords>()
@@ -41,7 +42,7 @@ export const Map: React.FC = () => {
         const interval = setInterval(async () => {
             try {
                 let result = await getLocality(params.routeCode)
-                if(result.latitude != 0){
+                if (result.latitude != 0) {
                     setDriverMerker({
                         latitude: Number(result.latitude),
                         longitude: Number(result.longitude),
@@ -52,12 +53,12 @@ export const Map: React.FC = () => {
             }
         }, 3000);
 
-        Geolocation.getCurrentPosition(info => {
+        GetMonitorByID(user?.ID.toString()!).then(res => {
             setMonitorMerker({
-                latitude: info.coords.latitude,
-                longitude: info.coords.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421
+                latitude: Number(res.latitude),
+                longitude: Number(res.longitude),
+                latitudeDelta: 0,
+                longitudeDelta: 0
             })
         })
 
