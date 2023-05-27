@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { Platform, PermissionsAndroid, Text } from 'react-native'
 import { Header } from '@components/Header'
-import VanIcon from '@assets/images/van.png'
-import PersonIcon from '@assets/images/person.png'
 import * as S from './styles'
 import Theme from '@styles/theme'
 
@@ -103,11 +101,9 @@ export const Map: React.FC = () => {
                 )}
 
                 <Marker
-                    icon={PersonIcon}
                     coordinate={{ latitude: monitorMerker?.latitude || 0, longitude: monitorMerker?.longitude || 0 }}
                 />
                 <Marker
-                    icon={VanIcon}
                     coordinate={{ latitude: driverMerker?.latitude || 0, longitude: driverMerker?.longitude || 0 }}
                 />
             </S.Map>
