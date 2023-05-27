@@ -57,8 +57,8 @@ export const Map: React.FC = () => {
             setMonitorMerker({
                 latitude: Number(res.latitude),
                 longitude: Number(res.longitude),
-                latitudeDelta: 0,
-                longitudeDelta: 0
+                latitudeDelta: 0.04,
+                longitudeDelta: 0.05
             })
         })
 
